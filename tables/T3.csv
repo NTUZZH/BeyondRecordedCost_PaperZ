@@ -1,0 +1,10 @@
+Metric,Value,Reference,Hypothesis
+"Kendall's W, pooled (95\% CI)","0.464 (0.420, 0.491)",N2 ceiling p95: 0.250,H1 (< 0.75): supported
+"Kendall's W, campus range",0.337--0.578,,
+Mean pairwise tau-b (off-diagonal),0.302,min -0.415 (L3--L5),
+"Top-10\% Jaccard overlap, mean pair",0.456,top-20\%: 0.480; top-5: 0.492,
+"Consensus core (share of k, top-10\%)",0.000,top-5: 0.067,
+High-contrast entities (95\% CI),"26.8\% (24.4, 30.5)","top decile somewhere, below median elsewhere",
+Cost top-decile leavers (95\% CI),"45.5\% (27.3, 45.5)",out of top decile under $\geq 2$ other ledgers,H2 ($\geq$ 20\%): supported
+MEII significant vs N1 floor (Wilson CI),"69.5\% (58.9, 78.4)",cost-only floor: 97.6\%,H3 ($\geq$ 10\%): supported
+"Split-half consistency (N3, Spearman)","L1 0.99, L2 0.97, L3 1.00","L4 0.97, L5 0.69",

@@ -1,0 +1,139 @@
+{
+  "campus": "U04",
+  "W": 0.4146,
+  "n_entities": 15,
+  "top5_by_rule": {
+    "recorded_cost": [
+      {
+        "system": "D30",
+        "desc": "HVAC"
+      },
+      {
+        "system": "D50",
+        "desc": "Electrical"
+      },
+      {
+        "system": "D20",
+        "desc": "Plumbing"
+      },
+      {
+        "system": "D40",
+        "desc": "Fire Protection"
+      },
+      {
+        "system": "G20",
+        "desc": "Site Improvements"
+      }
+    ],
+    "labor_hours": [
+      {
+        "system": "D50",
+        "desc": "Electrical"
+      },
+      {
+        "system": "D20",
+        "desc": "Plumbing"
+      },
+      {
+        "system": "D30",
+        "desc": "HVAC"
+      },
+      {
+        "system": "C10",
+        "desc": "Interior Construction"
+      },
+      {
+        "system": "D40",
+        "desc": "Fire Protection"
+      }
+    ],
+    "chronicity": [
+      {
+        "system": "D50",
+        "desc": "Electrical"
+      },
+      {
+        "system": "D20",
+        "desc": "Plumbing"
+      },
+      {
+        "system": "D30",
+        "desc": "HVAC"
+      },
+      {
+        "system": "D40",
+        "desc": "Fire Protection"
+      },
+      {
+        "system": "C10",
+        "desc": "Interior Construction"
+      }
+    ],
+    "shock": [
+      {
+        "system": "D30",
+        "desc": "HVAC"
+      },
+      {
+        "system": "D20",
+        "desc": "Plumbing"
+      },
+      {
+        "system": "D50",
+        "desc": "Electrical"
+      },
+      {
+        "system": "G20",
+        "desc": "Site Improvements"
+      },
+      {
+        "system": "D40",
+        "desc": "Fire Protection"
+      }
+    ],
+    "volatility": [
+      {
+        "system": "C20",
+        "desc": "Stairs"
+      },
+      {
+        "system": "D10",
+        "desc": "Conveying"
+      },
+      {
+        "system": "F10",
+        "desc": "Special Construction"
+      },
+      {
+        "system": "D90",
+        "desc": "General"
+      },
+      {
+        "system": "G20",
+        "desc": "Site Improvements"
+      }
+    ],
+    "consensus": [
+      {
+        "system": "D20",
+        "desc": "Plumbing"
+      },
+      {
+        "system": "D50",
+        "desc": "Electrical"
+      },
+      {
+        "system": "D30",
+        "desc": "HVAC"
+      },
+      {
+        "system": "D40",
+        "desc": "Fire Protection"
+      },
+      {
+        "system": "D90",
+        "desc": "General"
+      }
+    ]
+  }
+}

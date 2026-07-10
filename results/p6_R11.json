@@ -1,0 +1,23 @@
+{
+  "n_entities": 82,
+  "W_pooled": 0.4747,
+  "W_per_campus": {
+    "1": 0.5783,
+    "2": 0.4769,
+    "4": 0.4146,
+    "5": 0.4229,
+    "8": 0.4747,
+    "9": 0.4374
+  },
+  "high_contrast_share": 0.2805,
+  "h2_stat": 0.4545,
+  "meii_mean": 0.2049,
+  "H1_verdict": "supported",
+  "H2_verdict": "supported",
+  "worst_regret_cost": 0.5167,
+  "worst_regret_consensus": 0.4727,
+  "regret_ratio": 0.9148,
+  "H4_verdict": "not supported",
+  "n1_sig_share": 0.6829,
+  "archetype_agreement": 0.9506
+}

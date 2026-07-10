@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+data/raw/FMUCD.csv
+data/interim/
+data/panel/
+results/boot/
+.DS_Store

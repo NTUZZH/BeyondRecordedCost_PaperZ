@@ -1,0 +1,60 @@
+{
+  "N1": {
+    "share_significant": 0.6951,
+    "n_significant": 57,
+    "n_entities": 82,
+    "share_significant_wilson_ci95": [
+      0.5886,
+      0.7842
+    ],
+    "share_significant_costfloor": 0.9756,
+    "mean_noise_floor_p95": 0.116,
+    "mean_rank_sd_by_ledger": {
+      "L1": 0.0206,
+      "L2": 0.0263,
+      "L3": 0.0032,
+      "L4": 0.0312,
+      "L5": 0.1204
+    },
+    "meii_quartiles": [
+      0.1177,
+      0.29
+    ]
+  },
+  "N2": {
+    "W_perm_mean": 0.2002,
+    "W_perm_p95": 0.2496,
+    "W_perm_p99": 0.278,
+    "meii_perm_mean": 0.2773,
+    "meii_perm_p5": 0.267,
+    "meii_perm_p95": 0.2866,
+    "h2_perm_mean": 0.9914
+  },
+  "N3": {
+    "L1": {
+      "spearman_mean": 0.9851,
+      "spearman_p5": 0.9776,
+      "spearman_p95": 0.9911
+    },
+    "L2": {
+      "spearman_mean": 0.9706,
+      "spearman_p5": 0.9591,
+      "spearman_p95": 0.9824
+    },
+    "L3": {
+      "spearman_mean": 0.9983,
+      "spearman_p5": 0.9974,
+      "spearman_p95": 0.9993
+    },
+    "L4": {
+      "spearman_mean": 0.9691,
+      "spearman_p5": 0.9562,
+      "spearman_p95": 0.9795
+    },
+    "L5": {
+      "spearman_mean": 0.6886,
+      "spearman_p5": 0.6016,
+      "spearman_p95": 0.7696
+    }
+  }
+}

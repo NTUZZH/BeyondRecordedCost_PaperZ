@@ -1,0 +1,46 @@
+{
+  "PPM": {
+    "n_entities": 64,
+    "W_pooled": 0.4261,
+    "W_per_campus": {
+      "1": 0.4887,
+      "2": 0.3796,
+      "4": 0.424,
+      "5": 0.4133,
+      "8": 0.4257,
+      "9": 0.4054
+    },
+    "high_contrast_share": 0.3281,
+    "h2_stat": 0.6667,
+    "meii_mean": 0.2235,
+    "H1_verdict": "supported",
+    "H2_verdict": "supported",
+    "worst_regret_cost": 0.578,
+    "worst_regret_consensus": 0.5611,
+    "regret_ratio": 0.9707,
+    "H4_verdict": "not supported",
+    "n1_sig_share": 0.7969
+  },
+  "UPM": {
+    "n_entities": 72,
+    "W_pooled": 0.4304,
+    "W_per_campus": {
+      "1": 0.4738,
+      "2": 0.5676,
+      "4": 0.3857,
+      "5": 0.328,
+      "8": 0.3853,
+      "9": 0.4305
+    },
+    "high_contrast_share": 0.3194,
+    "h2_stat": 0.2727,
+    "meii_mean": 0.2166,
+    "H1_verdict": "supported",
+    "H2_verdict": "supported",
+    "worst_regret_cost": 0.4865,
+    "worst_regret_consensus": 0.4567,
+    "regret_ratio": 0.9389,
+    "H4_verdict": "not supported",
+    "n1_sig_share": 0.75
+  }
+}

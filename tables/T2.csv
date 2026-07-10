@@ -1,0 +1,7 @@
+Ledger,Definition,Decision view,Requires
+L1 Recorded cost,$\sum_{w \in W(i)} x_w$,Cash expenditure and budget reporting,Cost field
+L2 Labor burden,$\sum_{w \in W(i)} h_w$,Workforce planning and staffing,Labor hours
+L3 Chronicity,$P_i \cdot F_i$ (active-quarter share $\times$ WO count),Recurring nuisance; process improvement,Dates
+L4 Shock burden,"$\sum_{w} x_w \mathbb{1}[x_w > \tau_{c}]$, $\tau_c$ = campus p95",Contingency reserves; budget-risk exposure,Cost field
+L5 Budget volatility,"$\mathrm{SD}(C_{i,y}) / \mathrm{mean}(C_{i,y})$",Budget predictability; financial planning,"Cost + dates, $\geq 5$ years"
+L6 Total burden (derived),$\mathrm{L1}^{2021} + \rho \cdot \mathrm{L2}$,Decision case only; never in MEII,Cost + labor + wage rate

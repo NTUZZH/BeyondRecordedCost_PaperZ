@@ -1,0 +1,12 @@
+{
+  "cb_cost_set_labor": 0.804,
+  "cb_cost_set_chron": 0.8163,
+  "cb_cost_set_shock": 0.8171,
+  "cb_cost_set_vol": 0.3537,
+  "cb_cost_set_cost": 0.8225,
+  "cb_consensus_labor": 0.8098,
+  "cb_consensus_chron": 0.8118,
+  "cb_consensus_cost": 0.8172,
+  "cb_consensus_vol": 0.366,
+  "note": "abs5 = top 5 entities per campus, mean across campuses; captured shares are of campus-total (comparable set) ledger burden"
+}

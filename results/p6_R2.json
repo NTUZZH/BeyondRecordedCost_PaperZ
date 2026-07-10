@@ -1,0 +1,81 @@
+{
+  "per_left_out_year": {
+    "2014": {
+      "W_pooled": 0.4229,
+      "high_contrast_share": 0.284,
+      "h2_stat": 0.4545,
+      "regret_ratio": 0.9193,
+      "n_entities": 81,
+      "n1_sig_share": 0.7284,
+      "archetype_agreement": 0.9506
+    },
+    "2015": {
+      "W_pooled": 0.4596,
+      "high_contrast_share": 0.2222,
+      "h2_stat": 0.3636,
+      "regret_ratio": 0.8379,
+      "n_entities": 81,
+      "n1_sig_share": 0.7037,
+      "archetype_agreement": 0.8889
+    },
+    "2016": {
+      "W_pooled": 0.4448,
+      "high_contrast_share": 0.1852,
+      "h2_stat": 0.3636,
+      "regret_ratio": 0.6331,
+      "n_entities": 81,
+      "n1_sig_share": 0.679,
+      "archetype_agreement": 0.8148
+    },
+    "2017": {
+      "W_pooled": 0.4597,
+      "high_contrast_share": 0.1772,
+      "h2_stat": 0.3636,
+      "regret_ratio": 0.6272,
+      "n_entities": 79,
+      "n1_sig_share": 0.6582,
+      "archetype_agreement": 0.8354
+    },
+    "2018": {
+      "W_pooled": 0.4683,
+      "high_contrast_share": 0.2051,
+      "h2_stat": 0.3636,
+      "regret_ratio": 0.6286,
+      "n_entities": 78,
+      "n1_sig_share": 0.6795,
+      "archetype_agreement": 0.7692
+    },
+    "2019": {
+      "W_pooled": 0.4608,
+      "high_contrast_share": 0.2078,
+      "h2_stat": 0.2727,
+      "regret_ratio": 0.612,
+      "n_entities": 77,
+      "n1_sig_share": 0.6364,
+      "archetype_agreement": 0.7792
+    },
+    "2020": {
+      "W_pooled": 0.4684,
+      "high_contrast_share": 0.2375,
+      "h2_stat": 0.4545,
+      "regret_ratio": 0.83,
+      "n_entities": 80,
+      "n1_sig_share": 0.6625,
+      "archetype_agreement": 0.925
+    }
+  },
+  "W_range": [
+    0.4229,
+    0.4684
+  ],
+  "h2_range": [
+    0.2727,
+    0.4545
+  ],
+  "n1_sig_share_range": [
+    0.6364,
+    0.7284
+  ],
+  "archetype_agreement_min": 0.7692,
+  "verdicts_unchanged": true
+}

@@ -1,0 +1,43 @@
+{
+  "H1": {
+    "statement": "Cross-ledger concordance is moderate at best: pooled Kendall's W < 0.75.",
+    "threshold": 0.75,
+    "observed_W_pooled": 0.464,
+    "observed_W_ci95": [
+      0.4205,
+      0.4907
+    ],
+    "verdict": "supported"
+  },
+  "H2": {
+    "statement": "At least 20% of top-decile-by-recorded-cost entities fall below the top decile under at least two other ledgers.",
+    "threshold": 0.2,
+    "observed_share": 0.4545,
+    "observed_ci95": [
+      0.2727,
+      0.4545
+    ],
+    "verdict": "supported"
+  },
+  "H3": {
+    "statement": "At least 10% of comparable entities are significantly representation-sensitive relative to the N1 noise floor.",
+    "threshold": 0.1,
+    "observed_share": 0.6951,
+    "observed_ci95": [
+      0.5886,
+      0.7842
+    ],
+    "verdict": "supported"
+  },
+  "H4": {
+    "statement": "The consensus ranking's worst-case regret is at least 25% lower than recorded-cost-only ranking's worst-case regret.",
+    "threshold_ratio": 0.75,
+    "observed_worst_regret_consensus_pct10": 0.4225,
+    "observed_worst_regret_cost_pct10": 0.4666,
+    "observed_ratio_pct10": 0.9055,
+    "observed_worst_regret_consensus_pct20": 0.4031,
+    "observed_worst_regret_cost_pct20": 0.4377,
+    "observed_ratio_pct20": 0.921,
+    "verdict": "not supported"
+  }
+}

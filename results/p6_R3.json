@@ -1,0 +1,68 @@
+{
+  "B20": {
+    "n_entities": 6,
+    "W": 0.2368,
+    "meii_mean": 0.1835,
+    "sig_share": 0.5
+  },
+  "B30": {
+    "n_entities": 6,
+    "W": 0.292,
+    "meii_mean": 0.1768,
+    "sig_share": 0.5
+  },
+  "C10": {
+    "n_entities": 6,
+    "W": 0.4907,
+    "meii_mean": 0.1539,
+    "sig_share": 0.5
+  },
+  "C30": {
+    "n_entities": 5,
+    "W": 0.3402,
+    "meii_mean": 0.1505,
+    "sig_share": 0.4
+  },
+  "D20": {
+    "n_entities": 6,
+    "W": 0.7349,
+    "meii_mean": 0.2312,
+    "sig_share": 0.8333
+  },
+  "D30": {
+    "n_entities": 6,
+    "W": 0.409,
+    "meii_mean": 0.3299,
+    "sig_share": 1.0
+  },
+  "D40": {
+    "n_entities": 6,
+    "W": 0.2977,
+    "meii_mean": 0.1571,
+    "sig_share": 0.6667
+  },
+  "D50": {
+    "n_entities": 5,
+    "W": 0.4583,
+    "meii_mean": 0.3109,
+    "sig_share": 1.0
+  },
+  "D90": {
+    "n_entities": 5,
+    "W": 0.2081,
+    "meii_mean": 0.1947,
+    "sig_share": 1.0
+  },
+  "E10": {
+    "n_entities": 5,
+    "W": 0.302,
+    "meii_mean": 0.1449,
+    "sig_share": 0.4
+  },
+  "E20": {
+    "n_entities": 6,
+    "W": 0.5699,
+    "meii_mean": 0.1634,
+    "sig_share": 0.6667
+  }
+}

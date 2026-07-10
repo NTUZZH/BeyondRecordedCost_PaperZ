@@ -1,0 +1,50 @@
+{
+  "sweep": {
+    "20": {
+      "overlap_with_default_L6_top5": 1.0,
+      "captured_labor": 0.804,
+      "captured_cost": 0.8225
+    },
+    "25": {
+      "overlap_with_default_L6_top5": 1.0,
+      "captured_labor": 0.804,
+      "captured_cost": 0.8225
+    },
+    "30": {
+      "overlap_with_default_L6_top5": 1.0,
+      "captured_labor": 0.804,
+      "captured_cost": 0.8225
+    },
+    "35": {
+      "overlap_with_default_L6_top5": 1.0,
+      "captured_labor": 0.804,
+      "captured_cost": 0.8225
+    },
+    "40": {
+      "overlap_with_default_L6_top5": 1.0,
+      "captured_labor": 0.804,
+      "captured_cost": 0.8225
+    },
+    "45": {
+      "overlap_with_default_L6_top5": 1.0,
+      "captured_labor": 0.804,
+      "captured_cost": 0.8225
+    },
+    "50": {
+      "overlap_with_default_L6_top5": 0.9667,
+      "captured_labor": 0.8187,
+      "captured_cost": 0.8174
+    },
+    "55": {
+      "overlap_with_default_L6_top5": 0.9667,
+      "captured_labor": 0.8187,
+      "captured_cost": 0.8174
+    },
+    "60": {
+      "overlap_with_default_L6_top5": 0.9667,
+      "captured_labor": 0.8187,
+      "captured_cost": 0.8174
+    }
+  },
+  "min_overlap": 0.9667
+}

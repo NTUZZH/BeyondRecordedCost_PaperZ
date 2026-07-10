@@ -1,0 +1,64 @@
+{
+  "per_left_out": {
+    "1": {
+      "W_pooled": 0.4368,
+      "high_contrast_share": 0.2537,
+      "h2_stat": 0.4444,
+      "n1_sig_share": 0.6866,
+      "archetype_agreement": 1.0
+    },
+    "2": {
+      "W_pooled": 0.4601,
+      "high_contrast_share": 0.2794,
+      "h2_stat": 0.5556,
+      "n1_sig_share": 0.7206,
+      "archetype_agreement": 1.0
+    },
+    "4": {
+      "W_pooled": 0.4747,
+      "high_contrast_share": 0.2687,
+      "h2_stat": 0.3333,
+      "n1_sig_share": 0.7015,
+      "archetype_agreement": 0.9851
+    },
+    "5": {
+      "W_pooled": 0.4749,
+      "high_contrast_share": 0.2667,
+      "h2_stat": 0.5,
+      "n1_sig_share": 0.6667,
+      "archetype_agreement": 1.0
+    },
+    "8": {
+      "W_pooled": 0.4624,
+      "high_contrast_share": 0.2615,
+      "h2_stat": 0.4444,
+      "n1_sig_share": 0.7077,
+      "archetype_agreement": 1.0
+    },
+    "9": {
+      "W_pooled": 0.4731,
+      "high_contrast_share": 0.2794,
+      "h2_stat": 0.4444,
+      "n1_sig_share": 0.6912,
+      "archetype_agreement": 1.0
+    }
+  },
+  "W_range": [
+    0.4368,
+    0.4749
+  ],
+  "h2_range": [
+    0.3333,
+    0.5556
+  ],
+  "high_contrast_range": [
+    0.2537,
+    0.2794
+  ],
+  "n1_sig_share_range": [
+    0.6667,
+    0.7206
+  ],
+  "archetype_agreement_min": 0.9851,
+  "verdicts_unchanged": true
+}

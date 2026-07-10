@@ -1,0 +1,74 @@
+{
+  "system": {
+    "counts": {
+      "stable_priority": 15,
+      "hidden_burden": 15,
+      "cash_sink": 0,
+      "labor_sink": 2,
+      "chronic_drain": 0,
+      "shock_generator": 1,
+      "budget_destabiliser": 4,
+      "representation_sensitive": 4,
+      "unremarkable": 41
+    },
+    "shares": {
+      "stable_priority": 0.1829,
+      "hidden_burden": 0.1829,
+      "cash_sink": 0.0,
+      "labor_sink": 0.0244,
+      "chronic_drain": 0.0,
+      "shock_generator": 0.0122,
+      "budget_destabiliser": 0.0488,
+      "representation_sensitive": 0.0488,
+      "unremarkable": 0.5
+    },
+    "burden_weighted_shares": {
+      "hidden_burden": 0.0253,
+      "stable_priority": 0.6025,
+      "unremarkable": 0.2124,
+      "budget_destabiliser": 0.0411,
+      "labor_sink": 0.0257,
+      "representation_sensitive": 0.0796,
+      "shock_generator": 0.0133
+    },
+    "share_unchanged_vs_th75": 0.8902,
+    "share_unchanged_vs_th85": 0.8902
+  },
+  "bldg": {
+    "counts": {
+      "stable_priority": 287,
+      "hidden_burden": 273,
+      "cash_sink": 3,
+      "labor_sink": 60,
+      "chronic_drain": 14,
+      "shock_generator": 55,
+      "budget_destabiliser": 86,
+      "representation_sensitive": 152,
+      "unremarkable": 1356
+    },
+    "shares": {
+      "stable_priority": 0.1255,
+      "hidden_burden": 0.1194,
+      "cash_sink": 0.0013,
+      "labor_sink": 0.0262,
+      "chronic_drain": 0.0061,
+      "shock_generator": 0.0241,
+      "budget_destabiliser": 0.0376,
+      "representation_sensitive": 0.0665,
+      "unremarkable": 0.5932
+    },
+    "burden_weighted_shares": {
+      "budget_destabiliser": 0.0224,
+      "chronic_drain": 0.0034,
+      "hidden_burden": 0.0138,
+      "labor_sink": 0.0261,
+      "representation_sensitive": 0.0843,
+      "shock_generator": 0.0788,
+      "stable_priority": 0.5291,
+      "unremarkable": 0.2404,
+      "cash_sink": 0.0017
+    },
+    "share_unchanged_vs_th75": 0.8793,
+    "share_unchanged_vs_th85": 0.8832
+  }
+}

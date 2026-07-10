@@ -1,0 +1,350 @@
+{
+  "stable_priority": [
+    {
+      "campus": "U05",
+      "system": "D30",
+      "system_desc": "HVAC",
+      "n_entities_campus": 7,
+      "position_by_ledger": {
+        "L1": 1,
+        "L2": 1,
+        "L3": 1,
+        "L4": 1,
+        "L5": 7
+      },
+      "meii": 0.383,
+      "mean_rank": 0.829,
+      "n_wos": 101357
+    },
+    {
+      "campus": "U04",
+      "system": "D30",
+      "system_desc": "HVAC",
+      "n_entities_campus": 15,
+      "position_by_ledger": {
+        "L1": 1,
+        "L2": 3,
+        "L3": 3,
+        "L4": 1,
+        "L5": 14
+      },
+      "meii": 0.364,
+      "mean_rank": 0.773,
+      "n_wos": 34982
+    },
+    {
+      "campus": "U09",
+      "system": "D30",
+      "system_desc": "HVAC",
+      "n_entities_campus": 14,
+      "position_by_ledger": {
+        "L1": 1,
+        "L2": 1,
+        "L3": 1,
+        "L4": 1,
+        "L5": 12
+      },
+      "meii": 0.351,
+      "mean_rank": 0.843,
+      "n_wos": 50024
+    },
+    {
+      "campus": "U08",
+      "system": "D30",
+      "system_desc": "HVAC",
+      "n_entities_campus": 17,
+      "position_by_ledger": {
+        "L1": 2,
+        "L2": 1,
+        "L3": 2,
+        "L4": 2,
+        "L5": 15
+      },
+      "meii": 0.349,
+      "mean_rank": 0.8,
+      "n_wos": 19974
+    },
+    {
+      "campus": "U09",
+      "system": "D50",
+      "system_desc": "Electrical",
+      "n_entities_campus": 14,
+      "position_by_ledger": {
+        "L1": 2,
+        "L2": 2,
+        "L3": 2,
+        "L4": 3,
+        "L5": 13
+      },
+      "meii": 0.345,
+      "mean_rank": 0.757,
+      "n_wos": 47360
+    }
+  ],
+  "hidden_burden": [
+    {
+      "campus": "U08",
+      "system": "F10",
+      "system_desc": "Special Construction",
+      "n_entities_campus": 17,
+      "position_by_ledger": {
+        "L1": 17,
+        "L2": 17,
+        "L3": 16,
+        "L4": 15,
+        "L5": 1
+      },
+      "meii": 0.404,
+      "mean_rank": 0.282,
+      "n_wos": 105
+    },
+    {
+      "campus": "U04",
+      "system": "C20",
+      "system_desc": "Stairs",
+      "n_entities_campus": 15,
+      "position_by_ledger": {
+        "L1": 14,
+        "L2": 14,
+        "L3": 14,
+        "L4": 14,
+        "L5": 1
+      },
+      "meii": 0.388,
+      "mean_rank": 0.307,
+      "n_wos": 279
+    },
+    {
+      "campus": "U09",
+      "system": "G40",
+      "system_desc": "Site Electrical Utilities",
+      "n_entities_campus": 14,
+      "position_by_ledger": {
+        "L1": 12,
+        "L2": 12,
+        "L3": 12,
+        "L4": 14,
+        "L5": 1
+      },
+      "meii": 0.373,
+      "mean_rank": 0.343,
+      "n_wos": 1190
+    },
+    {
+      "campus": "U04",
+      "system": "F10",
+      "system_desc": "Special Construction",
+      "n_entities_campus": 15,
+      "position_by_ledger": {
+        "L1": 15,
+        "L2": 15,
+        "L3": 15,
+        "L4": 15,
+        "L5": 3
+      },
+      "meii": 0.358,
+      "mean_rank": 0.227,
+      "n_wos": 62
+    },
+    {
+      "campus": "U05",
+      "system": "B20",
+      "system_desc": "Exterior Enclosure",
+      "n_entities_campus": 7,
+      "position_by_ledger": {
+        "L1": 7,
+        "L2": 7,
+        "L3": 5,
+        "L4": 6,
+        "L5": 1
+      },
+      "meii": 0.356,
+      "mean_rank": 0.4,
+      "n_wos": 3752
+    }
+  ],
+  "labor_sink": [
+    {
+      "campus": "U02",
+      "system": "D50",
+      "system_desc": "Electrical",
+      "n_entities_campus": 14,
+      "position_by_ledger": {
+        "L1": 4,
+        "L2": 3,
+        "L3": 3,
+        "L4": 4,
+        "L5": 13
+      },
+      "meii": 0.295,
+      "mean_rank": 0.69,
+      "n_wos": 9196
+    },
+    {
+      "campus": "U04",
+      "system": "C10",
+      "system_desc": "Interior Construction",
+      "n_entities_campus": 15,
+      "position_by_ledger": {
+        "L1": 7,
+        "L2": 4,
+        "L3": 5,
+        "L4": 8,
+        "L5": 10
+      },
+      "meii": 0.159,
+      "mean_rank": 0.613,
+      "n_wos": 21834
+    }
+  ],
+  "shock_generator": [
+    {
+      "campus": "U04",
+      "system": "G20",
+      "system_desc": "Site Improvements",
+      "n_entities_campus": 15,
+      "position_by_ledger": {
+        "L1": 5,
+        "L2": 8,
+        "L3": 13,
+        "L4": 4,
+        "L5": 5
+      },
+      "meii": 0.245,
+      "mean_rank": 0.6,
+      "n_wos": 2089
+    }
+  ],
+  "budget_destabiliser": [
+    {
+      "campus": "U02",
+      "system": "D90",
+      "system_desc": "General",
+      "n_entities_campus": 14,
+      "position_by_ledger": {
+        "L1": 7,
+        "L2": 11,
+        "L3": 9,
+        "L4": 7,
+        "L5": 1
+      },
+      "meii": 0.267,
+      "mean_rank": 0.571,
+      "n_wos": 1105
+    },
+    {
+      "campus": "U09",
+      "system": "E10",
+      "system_desc": "Equipment",
+      "n_entities_campus": 14,
+      "position_by_ledger": {
+        "L1": 5,
+        "L2": 6,
+        "L3": 8,
+        "L4": 2,
+        "L5": 2
+      },
+      "meii": 0.186,
+      "mean_rank": 0.743,
+      "n_wos": 4423
+    },
+    {
+      "campus": "U04",
+      "system": "D90",
+      "system_desc": "General",
+      "n_entities_campus": 15,
+      "position_by_ledger": {
+        "L1": 6,
+        "L2": 6,
+        "L3": 11,
+        "L4": 6,
+        "L5": 4
+      },
+      "meii": 0.174,
+      "mean_rank": 0.627,
+      "n_wos": 4165
+    },
+    {
+      "campus": "U02",
+      "system": "D10",
+      "system_desc": "Conveying",
+      "n_entities_campus": 14,
+      "position_by_ledger": {
+        "L1": 5,
+        "L2": 6,
+        "L3": 8,
+        "L4": 5,
+        "L5": 3
+      },
+      "meii": 0.122,
+      "mean_rank": 0.681,
+      "n_wos": 1484
+    }
+  ],
+  "representation_sensitive": [
+    {
+      "campus": "U08",
+      "system": "D50",
+      "system_desc": "Electrical",
+      "n_entities_campus": 17,
+      "position_by_ledger": {
+        "L1": 3,
+        "L2": 3,
+        "L3": 1,
+        "L4": 5,
+        "L5": 16
+      },
+      "meii": 0.352,
+      "mean_rank": 0.729,
+      "n_wos": 28178
+    },
+    {
+      "campus": "U09",
+      "system": "D20",
+      "system_desc": "Plumbing",
+      "n_entities_campus": 14,
+      "position_by_ledger": {
+        "L1": 3,
+        "L2": 3,
+        "L3": 3,
+        "L4": 4,
+        "L5": 14
+      },
+      "meii": 0.345,
+      "mean_rank": 0.686,
+      "n_wos": 29269
+    },
+    {
+      "campus": "U02",
+      "system": "E10",
+      "system_desc": "Equipment",
+      "n_entities_campus": 14,
+      "position_by_ledger": {
+        "L1": 3,
+        "L2": 4,
+        "L3": 4,
+        "L4": 3,
+        "L5": 14
+      },
+      "meii": 0.332,
+      "mean_rank": 0.674,
+      "n_wos": 7677
+    },
+    {
+      "campus": "U04",
+      "system": "D40",
+      "system_desc": "Fire Protection",
+      "n_entities_campus": 15,
+      "position_by_ledger": {
+        "L1": 4,
+        "L2": 5,
+        "L3": 4,
+        "L4": 5,
+        "L5": 15
+      },
+      "meii": 0.315,
+      "mean_rank": 0.627,
+      "n_wos": 25279
+    }
+  ]
+}

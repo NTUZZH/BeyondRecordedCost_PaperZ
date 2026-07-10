@@ -1,0 +1,46 @@
+# Paper Z (CMERF) single source of parameter truth.
+seed: 20260707
+window_core: [2014, 2020]        # core analysis window
+min_wo_entity_system: 60         # fallback F1 (6 campuses < 8), was 100
+min_wo_entity_building_system: 30
+min_active_years: 4              # fallback F1, was 5
+cost_nonmissing_share: 0.70
+labor_nonmissing_share: 0.60
+labor_campus_missing_cutoff: 0.40  # campus labor-coverage screening cutoff
+zero_cost_rule: "keep_as_true_zero"
+shock_tau_pct: 95                 # sweep [90, 95, 99]
+vol_min_years: 5
+theta_high: 0.80
+theta_low: 0.50
+wage_rate_usd_per_hour: 25.86     # BLS OEWS May 2025, SOC 49-9071 national mean
+                                  # hourly wage, verified via api.bls.gov series
+                                  # OEUN000000000000049907103 on 2026-07-07
+wage_rate_cad_per_hour: 33.30     # StatCan 14-10-0340-01, maintenance and
+                                  # equipment operation trades, avg hourly wage,
+                                  # latest year (2022), WDS API 2026-07-07
+wage_sweep: [20, 60]
+bootstrap_B: 1000
+permutation_N: 1000
+topk_abs: 5
+topk_pct: [0.10, 0.20]
+extreme_pct: 99.9
+cpi_base_year: 2021
+
+# Data-quality screening resolutions
+campuses_retained: [1, 2, 4, 5, 8, 9]
+campuses_labor_ok: [1, 2, 4, 5, 8, 9]
+campuses_cad: [1, 4]
+date_column_by_campus:            # most reliable event-date field per campus
+  1: WOStartDate
+  2: WOStartDate
+  4: WOEndDate
+  5: WOStartDate
+  8: WOEndDate
+  9: WOStartDate
+campus_valid_window:              # substantial coverage (>=200 WOs/yr) within core
+  1: [2014, 2019]
+  2: [2016, 2020]
+  4: [2015, 2019]
+  5: [2014, 2020]
+  8: [2014, 2020]
+  9: [2014, 2020]

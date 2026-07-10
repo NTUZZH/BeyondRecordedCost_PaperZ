@@ -1,0 +1,38 @@
+{
+  "p90": {
+    "W_pooled": 0.4658,
+    "high_contrast_share": 0.2683,
+    "h2_stat": 0.2727,
+    "regret_ratio": 0.9057,
+    "H1_verdict": "supported",
+    "H2_verdict": "supported",
+    "H4_verdict": "not supported",
+    "taub_L4_vs_base": 0.9651,
+    "mean_abs_meii_shift": 0.0013,
+    "archetype_agreement": 0.9878
+  },
+  "p99": {
+    "W_pooled": 0.4618,
+    "high_contrast_share": 0.2805,
+    "h2_stat": 0.5455,
+    "regret_ratio": 0.9716,
+    "H1_verdict": "supported",
+    "H2_verdict": "supported",
+    "H4_verdict": "not supported",
+    "taub_L4_vs_base": 0.8858,
+    "mean_abs_meii_shift": 0.004,
+    "archetype_agreement": 0.9756
+  },
+  "count_p95": {
+    "W_pooled": 0.4576,
+    "high_contrast_share": 0.2683,
+    "h2_stat": 0.2727,
+    "regret_ratio": 0.9832,
+    "H1_verdict": "supported",
+    "H2_verdict": "supported",
+    "H4_verdict": "not supported",
+    "taub_L4_vs_base": 0.792,
+    "mean_abs_meii_shift": 0.0086,
+    "archetype_agreement": 0.939
+  }
+}

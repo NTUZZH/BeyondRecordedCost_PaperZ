@@ -1,0 +1,20 @@
+{
+  "count": {
+    "taub_L3_vs_base": 0.9856,
+    "mean_abs_meii_shift": 0.0006,
+    "W_pooled": 0.4628,
+    "archetype_agreement": 1.0
+  },
+  "active_quarters": {
+    "taub_L3_vs_base": 0.5426,
+    "mean_abs_meii_shift": 0.0209,
+    "W_pooled": 0.4302,
+    "archetype_agreement": 0.8537
+  },
+  "median_nonzero": {
+    "taub_L3_vs_base": 0.9458,
+    "mean_abs_meii_shift": 0.0037,
+    "W_pooled": 0.457,
+    "archetype_agreement": 1.0
+  }
+}

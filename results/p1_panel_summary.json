@@ -1,0 +1,32 @@
+{
+  "rows_raw_file": 3731442,
+  "rows_roster": 1210588,
+  "rows_negative_cost_set_missing": 151,
+  "rows_exact_duplicates_dropped": 5986,
+  "rows_missing_event_date": 6020,
+  "rows_outside_window_dropped": 246728,
+  "rows_clean": 951854,
+  "rows_near_dup_flagged": 220714,
+  "wo_type_counts": {
+    "UPM": 490137,
+    "PPM": 456026,
+    "UNKNOWN": 5691
+  },
+  "rows_extreme_flagged": 903,
+  "n_entities_system_all": 105,
+  "n_entities_system_comparable": 82,
+  "entities_per_campus_comparable": {
+    "1": 15,
+    "2": 14,
+    "4": 15,
+    "5": 7,
+    "8": 17,
+    "9": 14
+  },
+  "comparable_cost_share": 0.9875,
+  "comparable_wo_share": 0.9687,
+  "comparable_labor_share": 0.979,
+  "n_entities_bldg_system_all": 8698,
+  "n_entities_bldg_system_comparable": 2286,
+  "bldg_comparable_cost_share": 0.8452
+}

@@ -1,0 +1,24 @@
+{
+  "kruskal_by_system": {
+    "H": 28.551,
+    "p": 0.00757630815681587,
+    "n_groups": 14
+  },
+  "kruskal_by_campus": {
+    "H": 1.964,
+    "p": 0.8540781860114939,
+    "n_groups": 6
+  },
+  "spearman_meii_vs_log_n_wos": {
+    "rho": 0.1027,
+    "p": 0.3586404597351084
+  },
+  "spearman_meii_vs_upm_share": {
+    "rho": 0.0544,
+    "p": 0.627687292875113
+  },
+  "spearman_meii_vs_mean_rank": {
+    "rho": 0.1919,
+    "p": 0.08416119425217093
+  }
+}
