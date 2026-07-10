@@ -61,7 +61,9 @@
       0.7206
     ],
     "archetype_agreement_min": 0.9851,
-    "verdicts_unchanged": true
+    "verdicts_unchanged": true,
+    "h123_verdicts_unchanged": true,
+    "h4_tested": false
   },
   "R2": {
     "per_left_out_year": {
@@ -142,7 +144,19 @@
       0.7284
     ],
     "archetype_agreement_min": 0.7692,
-    "verdicts_unchanged": true
+    "verdicts_unchanged": false,
+    "h123_verdicts_unchanged": true,
+    "h4_ratio_range": [
+      0.612,
+      0.9193
+    ],
+    "h4_supported_years": [
+      2016,
+      2017,
+      2018,
+      2019
+    ],
+    "h4_unchanged": false
   },
   "R3": {
     "B20": {

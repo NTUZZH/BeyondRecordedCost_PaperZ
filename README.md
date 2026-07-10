@@ -38,19 +38,22 @@ the secondary constant-currency analyses are included under `data/raw/cpi/`.
 
 | Path | Contents |
 |---|---|
-| `src/` | pipeline stages `p0`..`p9`, `p3b`, and `src/utils/` helpers |
+| `src/` | pipeline stages `p0`..`p9` plus revised stages (`p2b`, `p3d`, `p3e`, `p5b`, `p6b`, `p7b`, `p8b`) and `src/utils/` helpers |
 | `config.yaml` | every analysis parameter and the random seed |
 | `run_all.sh` | one-command reproduction |
 | `results/` | machine-generated JSON/CSV, the single source of truth for every reported number |
-| `tables/` | tables T1..T6 and appendix tables A1..A5 (CSV + LaTeX) |
+| `tables/` | manuscript tables T1..T5 and appendix tables A1, A6..A8 (LaTeX; legacy tables retained) |
 
 ## Pipeline stages
 
-`p0` raw-data screening; `p1` cleaning and panel construction; `p2` ledgers
-and within-campus ranks; `p3` stability, MEII, null models, regret; `p3b` MEII
-decomposition and volatility-ledger robustness; `p4` archetypes; `p5` decision
-case; `p6` robustness suite; `p7` figures; `p8`/`p9` tables. Utilities cover
-the bootstrap machinery, ledger definitions, and the variant pipeline.
+`p0` raw-data screening; `p1` cleaning and panel construction; `p2` legacy
+five-ledger layer; `p2b` revised two-layer ledgers (burden family + monetary
+budget risk); `p3`/`p3b` legacy stability and decomposition; `p3d` revised
+two-layer stability with dual-design noise floors; `p3e` simulation
+validation; `p4` legacy archetypes; `p5` legacy decision case; `p5b`
+priority shortlisting (minimax regret, stakeholder weights); `p6`/`p6b`
+robustness suites; `p7`/`p7b` figures; `p8`/`p8b`/`p9` tables. Utilities
+cover the bootstrap machinery and ledger definitions.
 
 ## License
 

@@ -1,0 +1,64 @@
+{
+  "R13_threshold_sweep": {
+    "cost70_labor60": {
+      "n_entities": 82,
+      "W_burden": 0.9006,
+      "meii_b_mean": 0.083
+    },
+    "cost80_labor70": {
+      "n_entities": 76,
+      "W_burden": 0.9187,
+      "meii_b_mean": 0.0755,
+      "mean_taub_vs_baseline": 0.956,
+      "n_common": 76
+    },
+    "cost90_labor80": {
+      "n_entities": 68,
+      "W_burden": 0.9182,
+      "meii_b_mean": 0.0759,
+      "mean_taub_vs_baseline": 0.951,
+      "n_common": 68
+    },
+    "cost95_labor90": {
+      "n_entities": 60,
+      "W_burden": 0.9132,
+      "meii_b_mean": 0.0807,
+      "mean_taub_vs_baseline": 0.933,
+      "n_common": 60
+    },
+    "cost99_labor99": {
+      "n_entities": 43,
+      "W_burden": 0.9017,
+      "meii_b_mean": 0.0797,
+      "mean_taub_vs_baseline": 0.99,
+      "n_common": 43
+    }
+  },
+  "R14_missing_treatments": {
+    "observed": {
+      "n_entities": 82,
+      "W_burden": 0.9006,
+      "meii_b_mean": 0.083
+    },
+    "adjusted": {
+      "n_entities": 82,
+      "W_burden": 0.9004,
+      "meii_b_mean": 0.0829,
+      "mean_taub_vs_baseline": 0.991,
+      "n_common": 82
+    },
+    "bound_hi": {
+      "n_entities": 82,
+      "W_burden": 0.9006,
+      "meii_b_mean": 0.083,
+      "mean_taub_vs_baseline": 1.0,
+      "n_common": 82
+    }
+  },
+  "R15_coverage_associations": {
+    "spearman_costcov_vs_meii_burden": 0.022,
+    "spearman_costcov_vs_gap_risk": 0.091,
+    "spearman_costcov_vs_mean_burden_rank": -0.454,
+    "spearman_laborcov_vs_meii_b": 0.047
+  }
+}

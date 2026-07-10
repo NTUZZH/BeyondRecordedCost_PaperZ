@@ -19,6 +19,12 @@ wage_rate_cad_per_hour: 33.30     # StatCan 14-10-0340-01, maintenance and
                                   # equipment operation trades, avg hourly wage,
                                   # latest year (2022), WDS API 2026-07-07
 wage_sweep: [20, 60]
+# Wage price-year alignment: wages are 2025 nominal (BLS OEWS May 2025;
+# StatCan 2025 average); recorded costs are constant-2021 currency, so the
+# L6* wage rate is deflated to 2021 price levels (annual-average CPI ratios
+# 2021/2025 from the extended series in data/raw/cpi/).
+wage_deflator_usd: 0.8417         # 270.970 / 321.943
+wage_deflator_cad: 0.8624         # 141.6 / 164.2
 bootstrap_B: 1000
 permutation_N: 1000
 topk_abs: 5
@@ -26,7 +32,7 @@ topk_pct: [0.10, 0.20]
 extreme_pct: 99.9
 cpi_base_year: 2021
 
-# Data-quality screening resolutions
+# Data-quality screening resolutions (docs/decisions_log.md)
 campuses_retained: [1, 2, 4, 5, 8, 9]
 campuses_labor_ok: [1, 2, 4, 5, 8, 9]
 campuses_cad: [1, 4]

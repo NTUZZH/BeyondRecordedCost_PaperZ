@@ -1,0 +1,296 @@
+{
+  "q20": {
+    "K": 17,
+    "single_cost": {
+      "worst_regret": 0.2941,
+      "burden_worst": 0.2941,
+      "risk_regret": 0.2941,
+      "mean_regret": {
+        "L1": 0.0,
+        "L2": 0.1176,
+        "L3": 0.1176,
+        "L4x": 0.2941,
+        "L5r": 0.2941
+      }
+    },
+    "single_labor": {
+      "worst_regret": 0.3529,
+      "burden_worst": 0.1765,
+      "risk_regret": 0.3529,
+      "mean_regret": {
+        "L1": 0.1176,
+        "L2": 0.0,
+        "L3": 0.1176,
+        "L4x": 0.1765,
+        "L5r": 0.3529
+      }
+    },
+    "single_volume": {
+      "worst_regret": 0.2941,
+      "burden_worst": 0.2941,
+      "risk_regret": 0.2941,
+      "mean_regret": {
+        "L1": 0.1176,
+        "L2": 0.1176,
+        "L3": 0.0,
+        "L4x": 0.2941,
+        "L5r": 0.2941
+      }
+    },
+    "single_tail": {
+      "worst_regret": 0.2941,
+      "burden_worst": 0.2941,
+      "risk_regret": 0.2941,
+      "mean_regret": {
+        "L1": 0.2941,
+        "L2": 0.1765,
+        "L3": 0.2941,
+        "L4x": 0.0,
+        "L5r": 0.2941
+      }
+    },
+    "single_risk": {
+      "worst_regret": 0.3529,
+      "burden_worst": 0.3529,
+      "risk_regret": 0.0,
+      "mean_regret": {
+        "L1": 0.2941,
+        "L2": 0.3529,
+        "L3": 0.2941,
+        "L4x": 0.2941,
+        "L5r": 0.0
+      }
+    },
+    "burden_mean": {
+      "worst_regret": 0.2353,
+      "burden_worst": 0.2353,
+      "risk_regret": 0.2353,
+      "mean_regret": {
+        "L1": 0.1176,
+        "L2": 0.1176,
+        "L3": 0.0588,
+        "L4x": 0.2353,
+        "L5r": 0.2353
+      }
+    },
+    "burden_median": {
+      "worst_regret": 0.3529,
+      "burden_worst": 0.1765,
+      "risk_regret": 0.3529,
+      "mean_regret": {
+        "L1": 0.1176,
+        "L2": 0.0,
+        "L3": 0.1176,
+        "L4x": 0.1765,
+        "L5r": 0.3529
+      }
+    },
+    "all_mean": {
+      "worst_regret": 0.2353,
+      "burden_worst": 0.2353,
+      "risk_regret": 0.2353,
+      "mean_regret": {
+        "L1": 0.1765,
+        "L2": 0.1765,
+        "L3": 0.1176,
+        "L4x": 0.2353,
+        "L5r": 0.2353
+      }
+    },
+    "minimax": {
+      "worst_regret": 0.1765,
+      "burden_worst": 0.1765,
+      "risk_regret": 0.1765,
+      "mean_regret": {
+        "L1": 0.1765,
+        "L2": 0.1765,
+        "L3": 0.1765,
+        "L4x": 0.1765,
+        "L5r": 0.1765
+      }
+    },
+    "captured_cost_rule": {
+      "L1": 0.6465,
+      "L2": 0.6296,
+      "L4x": 0.5879,
+      "L6star": 0.6463
+    },
+    "captured_minimax": {
+      "L1": 0.6129,
+      "L2": 0.6061,
+      "L4x": 0.5974,
+      "L6star": 0.6047
+    }
+  },
+  "weights_q20": {
+    "scenarios": {
+      "finance": {
+        "L1": 0.059,
+        "L2": 0.118,
+        "L3": 0.059,
+        "L4x": 0.294,
+        "L5r": 0.235
+      },
+      "workforce": {
+        "L1": 0.118,
+        "L2": 0.118,
+        "L3": 0.059,
+        "L4x": 0.235,
+        "L5r": 0.235
+      },
+      "operations": {
+        "L1": 0.176,
+        "L2": 0.176,
+        "L3": 0.059,
+        "L4x": 0.235,
+        "L5r": 0.294
+      },
+      "risk": {
+        "L1": 0.235,
+        "L2": 0.294,
+        "L3": 0.235,
+        "L4x": 0.176,
+        "L5r": 0.118
+      }
+    },
+    "worst_regret_mean_over_weights": 0.2632,
+    "share_robust_core": 0.1585,
+    "share_contested": 0.0366
+  },
+  "q10": {
+    "K": 9,
+    "single_cost": {
+      "worst_regret": 0.3333,
+      "burden_worst": 0.3333,
+      "risk_regret": 0.2222,
+      "mean_regret": {
+        "L1": 0.0,
+        "L2": 0.2222,
+        "L3": 0.3333,
+        "L4x": 0.2222,
+        "L5r": 0.2222
+      }
+    },
+    "single_labor": {
+      "worst_regret": 0.2222,
+      "burden_worst": 0.2222,
+      "risk_regret": 0.2222,
+      "mean_regret": {
+        "L1": 0.2222,
+        "L2": 0.0,
+        "L3": 0.2222,
+        "L4x": 0.2222,
+        "L5r": 0.2222
+      }
+    },
+    "single_volume": {
+      "worst_regret": 0.4444,
+      "burden_worst": 0.4444,
+      "risk_regret": 0.3333,
+      "mean_regret": {
+        "L1": 0.3333,
+        "L2": 0.2222,
+        "L3": 0.0,
+        "L4x": 0.4444,
+        "L5r": 0.3333
+      }
+    },
+    "single_tail": {
+      "worst_regret": 0.4444,
+      "burden_worst": 0.4444,
+      "risk_regret": 0.2222,
+      "mean_regret": {
+        "L1": 0.2222,
+        "L2": 0.2222,
+        "L3": 0.4444,
+        "L4x": 0.0,
+        "L5r": 0.2222
+      }
+    },
+    "single_risk": {
+      "worst_regret": 0.3333,
+      "burden_worst": 0.3333,
+      "risk_regret": 0.0,
+      "mean_regret": {
+        "L1": 0.2222,
+        "L2": 0.2222,
+        "L3": 0.3333,
+        "L4x": 0.2222,
+        "L5r": 0.0
+      }
+    },
+    "burden_mean": {
+      "worst_regret": 0.4444,
+      "burden_worst": 0.3333,
+      "risk_regret": 0.4444,
+      "mean_regret": {
+        "L1": 0.2222,
+        "L2": 0.3333,
+        "L3": 0.3333,
+        "L4x": 0.3333,
+        "L5r": 0.4444
+      }
+    },
+    "burden_median": {
+      "worst_regret": 0.3333,
+      "burden_worst": 0.3333,
+      "risk_regret": 0.3333,
+      "mean_regret": {
+        "L1": 0.1111,
+        "L2": 0.2222,
+        "L3": 0.3333,
+        "L4x": 0.2222,
+        "L5r": 0.3333
+      }
+    },
+    "all_mean": {
+      "worst_regret": 0.4444,
+      "burden_worst": 0.4444,
+      "risk_regret": 0.3333,
+      "mean_regret": {
+        "L1": 0.3333,
+        "L2": 0.2222,
+        "L3": 0.2222,
+        "L4x": 0.4444,
+        "L5r": 0.3333
+      }
+    },
+    "minimax": {
+      "worst_regret": 0.2222,
+      "burden_worst": 0.2222,
+      "risk_regret": 0.2222,
+      "mean_regret": {
+        "L1": 0.2222,
+        "L2": 0.0,
+        "L3": 0.2222,
+        "L4x": 0.2222,
+        "L5r": 0.2222
+      }
+    },
+    "captured_cost_rule": {
+      "L1": 0.4294,
+      "L2": 0.4118,
+      "L4x": 0.4388,
+      "L6star": 0.4291
+    },
+    "captured_minimax": {
+      "L1": 0.4124,
+      "L2": 0.4182,
+      "L4x": 0.4417,
+      "L6star": 0.4094
+    }
+  },
+  "per_campus_top5": {
+    "single_cost": 0.3,
+    "single_labor": 0.4,
+    "single_volume": 0.4333,
+    "single_tail": 0.3,
+    "single_risk": 0.4333,
+    "burden_mean": 0.3667,
+    "burden_median": 0.3667,
+    "all_mean": 0.3,
+    "minimax": 0.2667
+  },
+  "wage_sweep_min_overlap": 0.9667,
+  "pareto_share": 0.1463
+}

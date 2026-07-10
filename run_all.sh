@@ -26,6 +26,20 @@ $PY src/p3_stability.py --analyze
 echo "== Phase 3b: MEII decomposition + L5-variant robustness =="
 $PY src/p3b_l5_analysis.py --jobs "$JOBS"
 
+echo "== Phase 2b/3d: revised two-layer ledgers + stability =="
+$PY src/p2b_revised.py
+$PY src/p3d_revised.py --boot --B 1000 --jobs "$JOBS"
+$PY src/p3d_revised.py --analyze
+
+echo "== Phase 3e: simulation validation =="
+$PY src/p3e_simulation.py --worlds 200 --B 200 --jobs "$JOBS"
+
+echo "== Phase 5b: priority shortlisting =="
+$PY src/p5b_shortlist.py
+
+echo "== Phase 6b: missing-data robustness =="
+$PY src/p6b_missing.py
+
 echo "== Phase 4: archetypes =="
 $PY src/p4_archetypes.py
 
@@ -37,9 +51,11 @@ $PY src/p6_robustness.py --jobs "$JOBS"
 
 echo "== Phase 7: figures =="
 $PY src/p7_figures.py
+$PY src/p7b_revised_figures.py
 
 echo "== Tables (manuscript + appendix) =="
 $PY src/p8_tables.py
+$PY src/p8b_revised_tables.py
 $PY src/p9_supplementary.py
 
 echo "run_all complete."

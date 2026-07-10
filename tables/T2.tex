@@ -1,12 +1,11 @@
-\begin{tabular}{lp{4.2cm}p{4.2cm}p{2.4cm}}
+\begin{tabular}{p{2.1cm}p{3.0cm}p{1.8cm}p{1.9cm}p{0.9cm}p{0.9cm}p{0.9cm}c}
 \toprule
-Ledger & Definition & Decision view & Requires \\
+Ledger & Construct & Primary stakeholder & Decision & Units & Additive & Size rel. & Split-half \\
 \midrule
-L1 Recorded cost & $\sum_{w \in W(i)} x_w$ & Cash expenditure and budget reporting & Cost field \\
-L2 Labor burden & $\sum_{w \in W(i)} h_w$ & Workforce planning and staffing & Labor hours \\
-L3 Chronicity & $P_i \cdot F_i$ (active-quarter share $\times$ WO count) & Recurring nuisance; process improvement & Dates \\
-L4 Shock burden & $\sum_{w} x_w \mathbb{1}[x_w > \tau_{c}]$, $\tau_c$ = campus p95 & Contingency reserves; budget-risk exposure & Cost field \\
-L5 Budget volatility & $\mathrm{SD}(C_{i,y}) / \mathrm{mean}(C_{i,y})$ & Budget predictability; financial planning & Cost + dates, $\geq 5$ years \\
-L6 Total burden (derived) & $\mathrm{L1}^{2021} + \rho \cdot \mathrm{L2}$ & Decision case only; never in MEII & Cost + labor + wage rate \\
+L1 Recorded expenditure & Cash spent (constant 2021 currency) & Finance / asset manager & Expenditure review & Currency & Yes & Positive & 0.99 \\
+L2 Labor burden & Technician hours consumed & Maintenance supervisor & Staffing and scheduling & Hours & Yes & Positive & 0.97 \\
+L3 Persistent volume & Work-order count weighted by temporal persistence & Operations manager & Process improvement & Count & Approx. & Positive & 1.00 \\
+L4* Tail exposure & Cost in excess of the campus p95 threshold & Financial planner & Contingency reserves & Currency & Yes & Positive & 0.95 \\
+L5* Budget risk & SD of two-way-demeaned annual cost & Budget planner & Risk control and forecasting & Currency & No (dispersion) & Weak & 0.77 \\
 \bottomrule
 \end{tabular}

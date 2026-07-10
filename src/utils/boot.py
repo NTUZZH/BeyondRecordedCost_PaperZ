@@ -134,6 +134,132 @@ class CampusBootstrap:
         return ranks
 
 
+class RevisedCampusBootstrap:
+    """Joint-by-campus bootstrap for the revised ledger set
+    (L1 constant-currency cost, L2 labor, L3 persistent volume, L4x excess
+    tail cost, L5r two-way-demeaned annual-cost SD).
+
+    mode='wo'         per-entity multinomial resampling of work orders
+                      (finite-record noise under independent records)
+    mode='year_block' campus-wide resampling of window YEARS with
+                      replacement; preserves within-year dependence and
+                      campus-year common shocks
+    """
+
+    NL = 5  # L1, L2, L3, L4x, L5r
+
+    def __init__(self, campus: int, wo_campus, entity_order: list[str],
+                 window_quarters: int, window_years: tuple[int, int],
+                 tau_pct: float, mode: str = "wo"):
+        self.campus = campus
+        self.entities = entity_order
+        self.Tq = window_quarters
+        self.q = tau_pct / 100.0
+        self.mode = mode
+        y0, y1 = int(window_years[0]), int(window_years[1])
+        self.years = list(range(y0, y1 + 1))
+        self.Y = len(self.years)
+        yidx = {y: j for j, y in enumerate(self.years)}
+
+        self.cost21_0, self.cost21_raw, self.labor0 = [], [], []
+        self.qcode, self.nq, self.yfull, self.n = [], [], [], []
+        for e in entity_order:
+            g = wo_campus[wo_campus["entity"] == e]
+            c21 = g["cost2021"].to_numpy(dtype=np.float64)
+            self.cost21_raw.append(c21)
+            self.cost21_0.append(np.nan_to_num(c21, nan=0.0))
+            self.labor0.append(np.nan_to_num(
+                g["labor"].to_numpy(dtype=np.float64), nan=0.0))
+            qu = g["quarter"].to_numpy()
+            qcats, qc = np.unique(qu, return_inverse=True)
+            self.qcode.append(qc.astype(np.int64))
+            self.nq.append(len(qcats))
+            self.yfull.append(np.array([yidx[int(y)] for y in g["year"]],
+                                       dtype=np.int64))
+            self.n.append(len(g))
+        # observed annual panel (E, Y), zeros for inactive years
+        E = len(entity_order)
+        self.Ymat = np.zeros((E, self.Y))
+        for ei in range(E):
+            np.add.at(self.Ymat[ei], self.yfull[ei], self.cost21_0[ei])
+        # pooled sorted costs for tau (constant currency)
+        pool_cost, pool_flat = [], []
+        offsets = np.concatenate([[0], np.cumsum(self.n)])[:-1]
+        for ei, c21 in enumerate(self.cost21_raw):
+            nm = np.flatnonzero(~np.isnan(c21))
+            pool_cost.append(c21[nm])
+            pool_flat.append(offsets[ei] + nm)
+        pc = np.concatenate(pool_cost)
+        pf = np.concatenate(pool_flat)
+        order = np.argsort(pc, kind="stable")
+        self.pool_cost_sorted = pc[order]
+        self.pool_flat_idx = pf[order].astype(np.int64)
+
+    def _tau(self, weights: list[np.ndarray]) -> float:
+        wg = np.concatenate(weights)
+        cw = np.cumsum(wg[self.pool_flat_idx])
+        if cw[-1] <= 0:
+            return np.inf
+        idx = min(np.searchsorted(cw, self.q * cw[-1], side="left"),
+                  len(cw) - 1)
+        return float(self.pool_cost_sorted[idx])
+
+    @staticmethod
+    def _demean_sd(M: np.ndarray) -> np.ndarray:
+        resid = (M - M.mean(axis=1, keepdims=True)
+                 - M.mean(axis=0, keepdims=True) + M.mean())
+        return resid.std(axis=1, ddof=1)
+
+    def scores_for_weights(self, weights: list[np.ndarray],
+                           year_draw: np.ndarray | None = None) -> np.ndarray:
+        tau = self._tau(weights)
+        E = len(self.entities)
+        out = np.full((E, self.NL), np.nan)
+        if year_draw is not None:
+            panel = self.Ymat[:, year_draw]
+        else:
+            panel = np.zeros((E, self.Y))
+        for ei in range(E):
+            w = weights[ei]
+            c0 = self.cost21_0[ei]
+            out[ei, 0] = w @ c0
+            out[ei, 1] = w @ self.labor0[ei]
+            qocc = np.bincount(self.qcode[ei], weights=w,
+                               minlength=self.nq[ei]) > 0
+            out[ei, 2] = (qocc.sum() / self.Tq) * self.n[ei]
+            excess = np.clip(c0 - tau, 0.0, None)
+            # excess computed on non-missing costs only
+            excess[np.isnan(self.cost21_raw[ei])] = 0.0
+            out[ei, 3] = w @ excess
+            if year_draw is None:
+                np.add.at(panel[ei], self.yfull[ei], w * c0)
+        out[:, 4] = self._demean_sd(panel)
+        return out
+
+    def observed_scores(self) -> np.ndarray:
+        w = [np.ones(n) for n in self.n]
+        return self.scores_for_weights(w)
+
+    def run_batch(self, seed_key: tuple, B: int) -> np.ndarray:
+        rng = np.random.default_rng(np.random.SeedSequence(seed_key))
+        E = len(self.entities)
+        ranks = np.full((B, E, self.NL), np.nan)
+        for b in range(B):
+            if self.mode == "year_block":
+                draw = rng.integers(0, self.Y, size=self.Y)
+                ycount = np.bincount(draw, minlength=self.Y).astype(np.float64)
+                weights = [ycount[self.yfull[ei]] for ei in range(E)]
+                sc = self.scores_for_weights(weights, year_draw=draw)
+            else:
+                weights = [
+                    rng.multinomial(n, np.full(n, 1.0 / n)).astype(np.float64)
+                    for n in self.n
+                ]
+                sc = self.scores_for_weights(weights)
+            ranks[b] = rank_matrix(sc)
+        return ranks
+
+
 def rank_matrix(scores: np.ndarray) -> np.ndarray:
     """Within-campus percentile ranks per ledger column, NaN-aware."""
     nE, nL = scores.shape

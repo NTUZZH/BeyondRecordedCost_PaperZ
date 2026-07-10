@@ -78,7 +78,12 @@ def meii_decomposition(cfg) -> dict:
         obs4 = np.nanstd(obs, axis=1, ddof=1)
         n_sig4 += int((obs4 > floor4).sum())
         n_tot += ranks.shape[1]
+    # the four volume-ledger ranks exist for ALL comparable entities
+    # (including the two without an L5 rank), so the denominator is the
+    # full comparable set, and is reported explicitly to keep the
+    # manuscript text consistent with the share.
     out["n_significant_four_ledger_floor"] = n_sig4
+    out["n_denominator_four_ledger_floor"] = n_tot
     out["share_significant_four_ledger_floor"] = round(n_sig4 / n_tot, 4)
     # four-ledger entities (no L5)
     four_only = m[m["n_ledgers"] == 4]

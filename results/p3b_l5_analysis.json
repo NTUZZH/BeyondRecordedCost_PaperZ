@@ -8,6 +8,7 @@
     "median_floor_p95": 0.105,
     "five_ledger_meii_mean": 0.212,
     "n_significant_four_ledger_floor": 52,
+    "n_denominator_four_ledger_floor": 82,
     "share_significant_four_ledger_floor": 0.6341,
     "four_only_meii": [
       0.092,

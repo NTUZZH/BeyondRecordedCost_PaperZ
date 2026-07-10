@@ -88,8 +88,12 @@ def r1_loco(cfg, wo, comp, base_labels, jobs) -> dict:
     out["high_contrast_range"] = [round(min(hcs), 4), round(max(hcs), 4)]
     out["n1_sig_share_range"] = [round(min(sig_shares), 4), round(max(sig_shares), 4)]
     out["archetype_agreement_min"] = round(min(lab_stab), 4)
-    out["verdicts_unchanged"] = bool(
+    # H4 (regret) is not recomputed per campus fold here, so this verdict
+    # claim covers H1-H3 only; named accordingly.
+    out["h123_verdicts_unchanged"] = bool(
         max(Ws) < 0.75 and min(h2s) >= 0.20 and min(sig_shares) >= 0.10)
+    out["h4_tested"] = False
+    out["verdicts_unchanged"] = out["h123_verdicts_unchanged"]
     return out
 
 
@@ -114,8 +118,19 @@ def r2_loyo(cfg, wo, comp, base_labels, jobs) -> dict:
     out["h2_range"] = [round(min(h2s), 4), round(max(h2s), 4)]
     out["n1_sig_share_range"] = [round(min(sigs), 4), round(max(sigs), 4)]
     out["archetype_agreement_min"] = round(float(np.nanmin(labs)), 4)
-    out["verdicts_unchanged"] = bool(
+    # H1-H3 hold in every fold or not; H4 (ratio <= threshold flips it to
+    # supported) is tracked separately because it turns out to be
+    # fold-sensitive, and that sensitivity is itself a finding.
+    ratios = [d["regret_ratio"] for d in out["per_left_out_year"].values()]
+    out["h123_verdicts_unchanged"] = bool(
         max(Ws) < 0.75 and min(h2s) >= 0.20 and min(sigs) >= 0.10)
+    out["h4_ratio_range"] = [round(min(ratios), 4), round(max(ratios), 4)]
+    out["h4_supported_years"] = sorted(
+        int(y) for y, d in out["per_left_out_year"].items()
+        if d["regret_ratio"] <= 0.75)
+    out["h4_unchanged"] = len(out["h4_supported_years"]) == 0
+    out["verdicts_unchanged"] = bool(out["h123_verdicts_unchanged"]
+                                     and out["h4_unchanged"])
     return out
 
 
@@ -304,11 +319,55 @@ CHECKS = {
 }
 
 
+def reverdict() -> None:
+    """Recompute the verdict-summary fields of R1/R2 from their cached
+    per-fold results (deterministic; no resampling), then rebuild the
+    summary file. Used after a change to the verdict logic."""
+    import json
+    for name, keyset in (("R1", "per_left_out"), ("R2", "per_left_out_year")):
+        f = results_path(f"p6_{name}.json")
+        with open(f) as fh:
+            res = json.load(fh)
+        folds = res[keyset]
+        Ws = [d["W_pooled"] for d in folds.values()]
+        h2s = [d["h2_stat"] for d in folds.values()]
+        sigs = [d["n1_sig_share"] for d in folds.values()]
+        res["h123_verdicts_unchanged"] = bool(
+            max(Ws) < 0.75 and min(h2s) >= 0.20 and min(sigs) >= 0.10)
+        if name == "R1":
+            res["h4_tested"] = False
+            res["verdicts_unchanged"] = res["h123_verdicts_unchanged"]
+        else:
+            ratios = [d["regret_ratio"] for d in folds.values()]
+            res["h4_ratio_range"] = [round(min(ratios), 4), round(max(ratios), 4)]
+            res["h4_supported_years"] = sorted(
+                int(y) for y, d in folds.items() if d["regret_ratio"] <= 0.75)
+            res["h4_unchanged"] = len(res["h4_supported_years"]) == 0
+            res["verdicts_unchanged"] = bool(res["h123_verdicts_unchanged"]
+                                             and res["h4_unchanged"])
+        write_json(res, f)
+        print(f"{name} verdicts recomputed:",
+              {k: res[k] for k in res if "verdict" in k or k.startswith("h4")})
+    full = {}
+    for name in CHECKS:
+        f = results_path(f"p6_{name}.json")
+        if f.exists():
+            with open(f) as fh:
+                full[name] = json.load(fh)
+    write_json(full, results_path("p6_robustness_summary.json"))
+    print("summary rebuilt")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", type=str, default=None)
     ap.add_argument("--jobs", type=int, default=8)
+    ap.add_argument("--reverdict", action="store_true",
+                    help="recompute R1/R2 verdict fields from cached folds")
     args = ap.parse_args()
+    if args.reverdict:
+        reverdict()
+        return
     cfg = load_config()
     wo = load_wo()
     comp = main_comparable()

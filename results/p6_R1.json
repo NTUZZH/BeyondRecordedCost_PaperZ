@@ -60,5 +60,7 @@
     0.7206
   ],
   "archetype_agreement_min": 0.9851,
-  "verdicts_unchanged": true
+  "verdicts_unchanged": true,
+  "h123_verdicts_unchanged": true,
+  "h4_tested": false
 }

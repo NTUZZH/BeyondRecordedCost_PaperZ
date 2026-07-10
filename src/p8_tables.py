@@ -36,6 +36,7 @@ def t1_dataset():
     wo = pd.read_parquet(ROOT / "data/interim/wo_clean.parquet")
     ent = pd.read_parquet(ROOT / "data/panel/entity_system.parquet")
     ent = ent[ent["system"].astype(str).str.strip() != ""]
+    audit = jload("p0_audit.json")
     rows = []
     for c in cfg["campuses_retained"]:
         w = wo[wo["campus"] == c]
@@ -235,15 +236,19 @@ def t6_robustness():
         "High-contrast (\\%)": f"{r1['high_contrast_range'][0]*100:.1f}--{r1['high_contrast_range'][1]*100:.1f}",
         "H2 stat (\\%)": f"{r1['h2_range'][0]*100:.1f}--{r1['h2_range'][1]*100:.1f}",
         "N1 sig. (\\%)": f"{r1['n1_sig_share_range'][0]*100:.1f}--{r1['n1_sig_share_range'][1]*100:.1f}",
-        "Verdicts": "unchanged" if r1["verdicts_unchanged"] else "changed",
+        "Verdicts": ("H1--H3 unchanged" if r1["h123_verdicts_unchanged"]
+                     else "H1--H3 changed"),
     })
+    n_flip = len(r2["h4_supported_years"])
+    n_folds = len(r2["per_left_out_year"])
     rows.append({
         "Check": "R2 leave-one-year-out (range)",
         "W": f"{r2['W_range'][0]:.3f}--{r2['W_range'][1]:.3f}",
         "High-contrast (\\%)": "",
         "H2 stat (\\%)": f"{r2['h2_range'][0]*100:.1f}--{r2['h2_range'][1]*100:.1f}",
         "N1 sig. (\\%)": f"{r2['n1_sig_share_range'][0]*100:.1f}--{r2['n1_sig_share_range'][1]*100:.1f}",
-        "Verdicts": "unchanged" if r2["verdicts_unchanged"] else "changed",
+        "Verdicts": ("unchanged" if r2["verdicts_unchanged"] else
+                     f"H1--H3 unchanged; H4$+$ in {n_flip}/{n_folds} folds"),
     })
     for tag, lab in (("p90", "R5 shock tau = p90"), ("p99", "R5 shock tau = p99"),
                      ("count_p95", "R5 shock count-based")):

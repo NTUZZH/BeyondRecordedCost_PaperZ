@@ -1,0 +1,58 @@
+{
+  "W_burden_pooled": 0.9006,
+  "W_burden_by_campus": {
+    "1": 0.9371,
+    "2": 0.8978,
+    "4": 0.8701,
+    "5": 0.8571,
+    "8": 0.8787,
+    "9": 0.9429
+  },
+  "pairwise_taub_burden": {
+    "L1_L2": 0.807,
+    "L1_L3": 0.694,
+    "L1_L4x": 0.818,
+    "L2_L3": 0.668,
+    "L2_L4x": 0.742,
+    "L3_L4x": 0.577
+  },
+  "taub_risk_vs_medburden": 0.158,
+  "spearman_risk_vs_burden_size_adj": 0.281,
+  "share_meii_b_sig_wo": 0.5976,
+  "share_gap_sig_wo": 0.0,
+  "share_meii_b_sig_year_block": 0.5122,
+  "share_gap_sig_year_block": 0.0,
+  "profile_counts": {
+    "unstable_aligned": 36,
+    "stable_aligned": 25,
+    "unstable_divergent": 13,
+    "stable_divergent": 8
+  },
+  "gap_upper_quartile": 0.4392,
+  "influence": {
+    "mean_meii_b_leave_one_out": {
+      "L1": 0.0934,
+      "L2": 0.0854,
+      "L3": 0.0595,
+      "L4x": 0.0767
+    },
+    "mean_meii_b_all": 0.083,
+    "spearman_sd_vs_mad": 0.746,
+    "spearman_sd_vs_iqr": 0.885,
+    "spearman_sd_vs_range": 0.989,
+    "W_burden_leave_one_out": {
+      "L1": 0.881,
+      "L2": 0.898,
+      "L3": 0.954,
+      "L4x": 0.913
+    }
+  },
+  "blocked_permutation_category": {
+    "obs_between_category_var": 0.00221,
+    "p_value_campus_blocked": 0.0004,
+    "n_categories": 14,
+    "n_entities": 74
+  },
+  "meii_b_mean_topk_contested": 0.1365,
+  "meii_b_mean_topk_stable": 0.0747
+}
