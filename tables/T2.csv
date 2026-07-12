@@ -1,7 +1,6 @@
-Ledger,Definition,Decision view,Requires
-L1 Recorded cost,$\sum_{w \in W(i)} x_w$,Cash expenditure and budget reporting,Cost field
-L2 Labor burden,$\sum_{w \in W(i)} h_w$,Workforce planning and staffing,Labor hours
-L3 Chronicity,$P_i \cdot F_i$ (active-quarter share $\times$ WO count),Recurring nuisance; process improvement,Dates
-L4 Shock burden,"$\sum_{w} x_w \mathbb{1}[x_w > \tau_{c}]$, $\tau_c$ = campus p95",Contingency reserves; budget-risk exposure,Cost field
-L5 Budget volatility,"$\mathrm{SD}(C_{i,y}) / \mathrm{mean}(C_{i,y})$",Budget predictability; financial planning,"Cost + dates, $\geq 5$ years"
-L6 Total burden (derived),$\mathrm{L1}^{2021} + \rho \cdot \mathrm{L2}$,Decision case only; never in MEII,Cost + labor + wage rate
+Criterion,Management question,What it measures,Units,Reliability
+Recorded cost,Where was the greatest expenditure recorded?,Total constant-currency cost,Currency,0.99
+Labor hours,Which systems consumed the most technician effort?,Total labor hours,Hours,0.97
+Persistent volume,Which systems generated sustained work demand?,Volume weighted by temporal persistence,Count-based,1.00
+Tail expenditure,Which systems accumulated the greatest excess cost from unusually expensive jobs?,Cost above the campus 95th percentile of per-work-order cost,Currency,0.95
+Budget risk,Which systems produced the largest annual budget surprises?,Common-shock-adjusted annual cost volatility,Currency,0.77

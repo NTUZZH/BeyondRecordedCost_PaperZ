@@ -1,8 +1,11 @@
-"""Phase 7b: revised manuscript figures for the two-layer framework.
+"""Phase 7b: manuscript figures for the two-layer framework.
 
-Replaces F1, F3-F7, F9 (main-text simulation calibration) and FS1 (full
-simulation panel for the Supplementary Material). F2 (data overview) and
-F8 (robustness) are still produced by p7_figures.py.
+File names match the printed figure numbers: F1 framework, F3 agreement,
+F4 rank stability, F5 noise floors, F6 simulation calibration, F7 entity
+profiles, F8 decision rules, plus FS1 (the full simulation panel for the
+Supplementary Material). F2 (data overview) comes from p7_figures.py; the
+other builders in that module belong to the superseded single-layer
+analysis and are no longer run.
 """
 
 from __future__ import annotations
@@ -33,107 +36,80 @@ PROFILE_COLOR = {"stable_aligned": "#BBBBBB",
 # Profile labels state the diagnosis and the action it supports.
 PROFILE_NAME = {
     "stable_aligned":
-        "metric-stable / risk-aligned $\\rightarrow$ one metric adequate",
+        "metric-stable / risk-aligned: one metric adequate",
     "stable_divergent":
-        "metric-stable / repositioned by risk $\\rightarrow$ separate risk review",
+        "metric-stable / repositioned by risk: separate risk review",
     "unstable_aligned":
-        "metric-sensitive / risk-aligned $\\rightarrow$ disclose criterion",
+        "metric-sensitive / risk-aligned: disclose criterion",
     "unstable_divergent":
-        "metric-sensitive / repositioned by risk $\\rightarrow$ multi-criteria rule",
+        "metric-sensitive / repositioned by risk: multi-criteria rule",
 }
 
 
 def f1_two_layer():
-    """Decision-oriented framework diagram: records -> two layers (each with
-    its management question) -> diagnostics -> entity diagnosis -> robust
-    shortlist."""
-    fig, ax = plt.subplots(figsize=(W2, 4.5))
+    """Compact two-layer framework diagram (the layout the authors approved).
+
+    Each layer carries the management question it answers, so the reader can
+    tell the same-question layer from the different-objective layer without
+    the caption, but the geometry stays the tight single-row flow that fits
+    the column without overflow.
+    """
+    fig, ax = plt.subplots(figsize=(W2, 3.15))
     ax.set_xlim(0, 100)
-    ax.set_ylim(0, 60)
+    ax.set_ylim(0, 41)
     ax.axis("off")
 
-    def box(x, y, w, h, text, fc="#F7F7F7", ec="#555555", fs=6.6,
-            bold=False, lw=0.8, align="center"):
+    def box(x, y, w, h, text, fc="#F7F7F7", ec="#555555", fs=7, bold=False,
+            lw=0.8):
         ax.add_patch(patches.FancyBboxPatch(
             (x, y), w, h, boxstyle="round,pad=0.4", fc=fc, ec=ec, lw=lw))
-        if align == "center":
-            ax.text(x + w / 2, y + h / 2, text, ha="center", va="center",
-                    fontsize=fs, fontweight="bold" if bold else "normal")
-        else:
-            ax.text(x + 1.2, y + h - 1.2, text, ha="left", va="top",
-                    fontsize=fs, fontweight="bold" if bold else "normal")
+        ax.text(x + w / 2, y + h / 2, text, ha="center", va="center",
+                fontsize=fs, fontweight="bold" if bold else "normal")
 
     def arrow(x0, y0, x1, y1):
         ax.annotate("", xy=(x1, y1), xytext=(x0, y0),
-                    arrowprops=dict(arrowstyle="->", lw=0.9,
-                                    color="#555555"))
+                    arrowprops=dict(arrowstyle="->", lw=0.9, color="#555555"))
 
-    # Source records
-    box(0.5, 24, 12.5, 12, "CMMS\nwork-order\nrecords\n(cost, hours,\n"
-        "dates, system)", fc="#E8E8E8", bold=True, fs=6.4)
+    box(0.5, 14, 15, 10, "CMMS\nwork-order\nrecords", fc="#E8E8E8", bold=True)
 
-    # ---- Layer A ----------------------------------------------------------
-    ax.add_patch(patches.FancyBboxPatch((17, 33), 30, 26,
-                 boxstyle="round,pad=0.5", fc="#FBFBFB", ec="#666666",
-                 lw=1.0))
-    ax.text(32, 57.2, "LAYER A: same prioritization question",
-            ha="center", fontsize=6.6, fontweight="bold", color="#333333")
-    ax.text(32, 54.2, "Which systems create the greatest realized burden?",
-            ha="center", fontsize=6.4, style="italic", color="#333333")
-    names = [("Cost", "L1"), ("Labor", "L2"),
-             ("Persistent\nvolume", "L3"), ("Tail\nexpenditure", "L4x")]
-    for k, (nm, code) in enumerate(names):
-        bx = 18.5 + (k % 2) * 14.2
-        by = 43.5 - (k // 2) * 8.6
-        box(bx, by, 13.0, 7.0, nm, fc="white", ec=RV_COLOR[code], fs=6.4)
-    arrow(13.5, 32, 16.5, 44)
+    # Layer A: the four alternative burden measures (same question)
+    ax.add_patch(patches.FancyBboxPatch((20.5, 9.5), 21.5, 27,
+                 boxstyle="round,pad=0.5", fc="none", ec="#888888",
+                 lw=1.0, linestyle="--"))
+    ax.text(31.2, 40.3, "Layer A: alternative burden measures",
+            ha="center", fontsize=6.8, color="#333333", style="italic")
+    ax.text(31.2, 38.4, "Which systems create the greatest realized burden?",
+            ha="center", fontsize=5.9, color="#555555")
+    for l, y in zip(BURDEN, (30.5, 24.5, 18.5, 12.5)):
+        box(22, y, 18.5, 4.6, RV_NAME[l], fc="white", ec=RV_COLOR[l], fs=6.8)
+        arrow(15.5, 19, 21.5, y + 2.3)
 
-    # ---- Layer B ----------------------------------------------------------
-    ax.add_patch(patches.FancyBboxPatch((17, 8), 30, 18,
-                 boxstyle="round,pad=0.5", fc="#FBFBFB", ec=OI["purple"],
-                 lw=1.0))
-    ax.text(32, 24.2, "LAYER B: different management objective",
-            ha="center", fontsize=6.6, fontweight="bold", color="#333333")
-    ax.text(32, 21.2, "Which systems create the largest annual budget\n"
-            "surprises?", ha="center", va="top", fontsize=6.4,
-            style="italic", color="#333333")
-    box(18.5, 9.5, 27, 6.2, "Budget risk: common-shock-adjusted\n"
-        "annual spending volatility", fc="white", ec=RV_COLOR["L5r"],
-        fs=6.4)
-    arrow(13.5, 26, 16.5, 17)
+    # Layer B: the distinct budget-risk objective (different question)
+    ax.add_patch(patches.FancyBboxPatch((20.5, 1.0), 21.5, 6.4,
+                 boxstyle="round,pad=0.5", fc="none", ec=OI["purple"],
+                 lw=1.0, linestyle="--"))
+    ax.text(31.2, 0.2, "Layer B: distinct management objective. Which systems"
+            "\ncreate the largest annual budget surprises?",
+            ha="center", va="top", fontsize=5.9, color="#555555")
+    box(22, 2.2, 18.5, 4.2, "Budget risk", fc="white",
+        ec=RV_COLOR["L5r"], fs=6.8)
+    arrow(15.5, 16, 21.5, 4.5)
 
-    # ---- Diagnostics ------------------------------------------------------
-    box(51, 38, 22, 17,
-        "Question A\nDoes the priority change with\nthe measure beyond "
-        "finite-\nrecord noise?\nKendall $W$ + top-$k$ overlap +\n"
-        "rank spread $I^B$ vs matched\nnoise floors", fs=6.0)
-    ax.text(62, 35.6, "simulation-validated;\nwork-order + year-block "
-            "resampling", ha="center", va="top", fontsize=5.6,
-            color="#444444")
-    box(51, 10, 22, 12,
-        "Question B\nHow far does budget risk\nreposition the burden\n"
-        "priority?\nrisk-repositioning gap $G$", fs=6.0)
-    arrow(47.5, 46, 50.5, 46)
-    arrow(47.5, 16, 50.5, 16)
-
-    # ---- Diagnosis and decision ------------------------------------------
-    box(77, 30, 22.5, 27,
-        "TWO-DIMENSIONAL ENTITY DIAGNOSIS\n"
-        "metric-stable + risk-aligned\n$\\rightarrow$ one burden metric "
-        "adequate\n"
-        "metric-stable + repositioned\n$\\rightarrow$ add separate risk "
-        "review\n"
-        "metric-sensitive + risk-aligned\n$\\rightarrow$ disclose criterion, "
-        "check\nboundary cases\n"
-        "metric-sensitive + repositioned\n$\\rightarrow$ explicit "
-        "multi-criteria rule", fs=5.7)
-    arrow(73.5, 46, 76.5, 46)
-    arrow(73.5, 16, 76.5, 38)
-    box(77, 2, 22.5, 12,
-        "ROBUST PRIORITY DECISION\nminimax regret + stakeholder-\nweight "
-        "sensitivity $\\rightarrow$ robust core,\ncontested frontier, "
-        "auditable\nshortlist", fc="#E8E8E8", fs=5.9, bold=False)
-    arrow(88, 29.5, 88, 14.5)
+    box(48, 24, 19, 10, "Metric sensitivity\nKendall $W$, top-$k$ overlap,"
+        "\nrank spread $I^B$ vs\nvalidated noise floors", fs=6.6)
+    box(48, 10.5, 19, 9, "Risk repositioning\nrisk gap $G$, four\nentity profiles",
+        fs=6.6)
+    for y in (32.8, 26.8, 20.8, 14.8):
+        arrow(40.5 + 0.5, y, 47.5, 29)
+    arrow(40.5 + 0.5, 4.3, 47.5, 14)
+    box(73, 17, 15, 11, "Robust\nshortlisting\nminimax regret,\nstakeholder\nweights", fs=6.6)
+    arrow(67.5, 29, 72.5, 24.5)
+    arrow(67.5, 15, 72.5, 20.5)
+    box(92, 19, 7.5, 7, "Priority\nshortlist", fc="#E8E8E8", bold=True, fs=6.6)
+    arrow(88.5, 22.5, 91.5, 22.5)
+    ax.text(57.5, 5.2, "noise calibration validated by simulation\n"
+            "(work-order and year-block resampling)",
+            ha="center", fontsize=6.2, color="#444444")
     save(fig, "F1_framework")
 
 
@@ -283,14 +259,14 @@ def f6_profile_map():
             ha="right", fontsize=6, color="#555555")
     ax.set_xlabel("Within-burden rank spread $I^B$", fontsize=7.5)
     ax.set_ylabel("Risk-repositioning gap $G$", fontsize=7.5)
-    leg = ax.legend(loc="upper right", fontsize=5.6, frameon=True,
-                    framealpha=0.92,
+    leg = ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.16),
+                    ncol=2, fontsize=5.9, frameon=False,
                     title="profile and supported action (black edge = "
                           "top-20% membership metric-dependent)")
-    leg.get_title().set_fontsize(5.6)
+    leg.get_title().set_fontsize(5.9)
     ax.grid(True, lw=0.3)
     fig.tight_layout()
-    save(fig, "F6_archetypes")
+    save(fig, "F7_profiles")
 
 
 def f7_decision():
@@ -300,8 +276,9 @@ def f7_decision():
              "single_risk", "burden_mean", "burden_median", "all_mean",
              "minimax"]
     names = ["Cost only", "Labor only", "Volume only", "Tail only",
-             "Risk only", "Burden mean rank", "Burden median rank",
-             "All-criteria mean", "Minimax regret"]
+             "Budget risk only", "Burden mean rank",
+             "Burden median rank", "All-criteria mean",
+             "Minimax regret"]
     worst = [q20[r]["worst_regret"] for r in rules]
     order = np.argsort(worst)[::-1]
     fig, axes = plt.subplots(1, 2, figsize=(W2, 3.0),
@@ -328,8 +305,8 @@ def f7_decision():
     crit = ["L1", "L2", "L3", "L4x", "L5r"]
     M = np.array([[scen[s][c] for c in crit] for s in scen_names])
     im = ax.imshow(M, cmap="Oranges", vmin=0, vmax=0.5)
-    ax.set_xticks(range(5), ["Cost", "Labor", "Volume", "Tail", "Risk"],
-                  fontsize=6.3)
+    ax.set_xticks(range(5), ["Cost", "Labor", "Volume", "Tail",
+                             "Budget\nrisk"], fontsize=6.3)
     ax.set_yticks(range(4), [s.capitalize() + "-heavy" for s in scen_names],
                   fontsize=6.3)
     for i in range(4):
@@ -339,7 +316,7 @@ def f7_decision():
     ax.set_title("(b) Regret by stakeholder weighting", loc="left")
     fig.colorbar(im, ax=ax, fraction=0.046, pad=0.03)
     fig.tight_layout()
-    save(fig, "F7_decision")
+    save(fig, "F8_decision")
 
 
 def _sim_type1_panel(ax, sim):
@@ -373,12 +350,13 @@ def f9_simulation():
     _sim_type1_panel(ax, sim)
     ax.set_title("Calibration of the metric-sensitivity flag", loc="left")
     fig.tight_layout()
-    save(fig, "F9_simulation")
+    save(fig, "F6_simulation")
 
     # Supplementary version: calibration + power/localization.
     fig, axes = plt.subplots(1, 2, figsize=(W2, 2.7))
     _sim_type1_panel(axes[0], sim)
-    axes[0].set_title("(a) Calibration of the $I^B$ flag", loc="left")
+    axes[0].set_title("(a) Calibration of the metric-sensitivity flag",
+                      loc="left")
     ax = axes[1]
     bars = [
         ("$I^B$ power\n(S2 divergent)", 100 * sim["S2"]["wo"]

@@ -1,4 +1,4 @@
-"""Phase 7/8: manuscript tables T1-T6.
+"""Phase 7/8: manuscript tables T1-T6 (guide Section 8).
 
 Each table is written as tables/T{n}.csv (data) and tables/T{n}.tex (booktabs
 LaTeX body, \input into the manuscript).
@@ -49,7 +49,7 @@ def t1_dataset():
             "Work orders": f"{len(w):,}",
             "Cost coverage (%)": f"{100 * w['cost'].notna().mean():.1f}",
             "Labor coverage (%)": f"{100 * w['labor_hours'].notna().mean():.1f}",
-            "UPM share (%)": f"{100 * (w['wo_type'] == 'UPM').mean():.1f}",
+            "Unplanned (%)": f"{100 * (w['wo_type'] == 'UPM').mean():.1f}",
             "Systems": len(e),
             "Comparable": int(e["comparable"].sum()),
         })
@@ -58,7 +58,7 @@ def t1_dataset():
     tot = {
         "Campus": "Total", "Country": "", "Window": "",
         "Work orders": f"{n_total:,}",
-        "Cost coverage (%)": "", "Labor coverage (%)": "", "UPM share (%)": "",
+        "Cost coverage (%)": "", "Labor coverage (%)": "", "Unplanned (%)": "",
         "Systems": int(df["Systems"].sum()),
         "Comparable": int(df["Comparable"].sum()),
     }
@@ -285,10 +285,10 @@ def t6_robustness():
 
 
 if __name__ == "__main__":
+    # Only T1 survives into the two-layer manuscript. The builders below it in
+    # this module belong to the superseded single-layer analysis and write to
+    # the same T2..T5 names that p8b_revised_tables.py now owns, so running
+    # them here would overwrite the revised tables with retired terminology.
+    # They are kept for provenance and are unreachable from the pipeline.
     t1_dataset()
-    t2_ledgers()
-    t3_stability()
-    t4_archetypes()
-    t5_regret()
-    t6_robustness()
-    print("Tables complete.")
+    print("Tables complete (T1; T2-T5 and the appendix tables come from p8b).")

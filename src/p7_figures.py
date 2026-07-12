@@ -1,4 +1,4 @@
-"""Phase 7: manuscript figures F1-F8.
+"""Phase 7: manuscript figures F1-F8 (guide Section 8).
 
 All figures are generated from results/ files (plus panel aggregates), saved
 as PDF + 300 dpi PNG under figures/. Okabe-Ito palette; ledger colors fixed
@@ -57,22 +57,34 @@ ARCH_LABEL = {
     "unremarkable": "Unremarkable",
 }
 
-# Times New Roman throughout, to match the manuscript body (newtxtext). On
-# this machine the metric-compatible substitute Liberation Serif is available;
-# STIX supplies Times-like math glyphs. matplotlib resolves the first serif
-# family it finds, so real Times New Roman is used automatically if installed.
+# One Times face for every character in the paper, figures included. The
+# manuscript body (newtx) is set in TeX Gyre Termes, the Times New Roman
+# metric-compatible face shipped with TeX, so the figures use the same face
+# for text AND math (mathtext "custom" routes rm/it/bf through it), and no
+# STIX or DejaVu glyph can leak into a plot. assets/fonts holds TrueType
+# copies built by src/utils/make_fonts.py: matplotlib embeds TrueType cleanly
+# under pdf.fonttype 42, whereas the stock CFF/OTF trips PDF preflight.
+import glob as _glob
 import matplotlib.font_manager as _fm
-for _p in ("/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf",
-           "/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf",
-           "/usr/share/fonts/truetype/liberation/LiberationSerif-Italic.ttf"):
+_TTF = _glob.glob(str(ROOT / "assets/fonts/TeXGyreTermes-*.ttf"))
+for _p in _TTF + [
+        "/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf",
+        "/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf",
+        "/usr/share/fonts/truetype/liberation/LiberationSerif-Italic.ttf"]:
     try:
         _fm.fontManager.addfont(_p)
     except Exception:
         pass
+_SERIF = ["Times New Roman", "TeX Gyre Termes", "Liberation Serif",
+          "Nimbus Roman", "DejaVu Serif"]
 plt.rcParams.update({
     "font.family": "serif",
-    "font.serif": ["Times New Roman", "Liberation Serif", "Nimbus Roman", "DejaVu Serif"],
-    "mathtext.fontset": "stix",
+    "font.serif": _SERIF,
+    "mathtext.fontset": "custom",
+    "mathtext.rm": "serif", "mathtext.it": "serif:italic",
+    "mathtext.bf": "serif:bold", "mathtext.sf": "serif",
+    "mathtext.cal": "serif:italic", "mathtext.tt": "serif",
+    "mathtext.default": "it",
     "font.size": 8, "axes.titlesize": 8.5, "axes.labelsize": 8,
     "xtick.labelsize": 7.5, "ytick.labelsize": 7.5, "legend.fontsize": 7,
     "axes.spines.top": False, "axes.spines.right": False,
@@ -148,7 +160,7 @@ def f1_schematic():
 # ---------------------------------------------------------------- F2
 def coverage_eventdate(cfg) -> pd.DataFrame:
     """Campus x year WO counts using each campus's assigned date column
-    (per-campus event-date columns); cached in results/p7_coverage_eventdate.csv."""
+    (deviation D-02); cached in results/p7_coverage_eventdate.csv."""
     out = results_path("p7_coverage_eventdate.csv")
     if out.exists():
         cov = pd.read_csv(out, index_col=0)
@@ -190,9 +202,12 @@ def f2_data_overview():
     for c in campuses:
         labels.append(f"U{c:02d}" if c in retained else f"U{c:02d} (excl.)")
     ax.set_yticks(range(len(campuses)), labels)
+    # Excluded campuses carry both an "(excl.)" suffix and a gray italic tick,
+    # so the exclusion reads at any print size and does not rely on color.
     for tick, c in zip(ax.get_yticklabels(), campuses):
         if c not in retained:
-            tick.set_color("#999999")
+            tick.set_color("#8A8A8A")
+            tick.set_style("italic")
     for ci, c in enumerate(campuses):
         if c in retained:
             y0, y1 = cfg["campus_valid_window"][c]
@@ -537,12 +552,10 @@ def f8_robustness():
 
 
 if __name__ == "__main__":
-    f1_schematic()
+    # Only F2 survives into the two-layer manuscript. The other builders in
+    # this module belong to the superseded single-layer analysis: they still
+    # write files named F1/F3..F7, so calling them here would silently
+    # overwrite the revised figures that p7b_revised_figures.py produces.
+    # They are kept for provenance and are unreachable from the pipeline.
     f2_data_overview()
-    f3_agreement()
-    f4_bump()
-    f5_meii_floor()
-    f6_archetypes()
-    f7_decision()
-    f8_robustness()
-    print("Phase 7 figures complete.")
+    print("Phase 7 figures complete (F2; F1 and F3-F9 come from p7b).")

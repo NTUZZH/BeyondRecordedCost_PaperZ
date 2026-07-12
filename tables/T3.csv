@@ -1,10 +1,5 @@
-Metric,Value,Reference,Hypothesis
-"Kendall's W, pooled (95\% CI)","0.464 (0.420, 0.491)",N2 ceiling p95: 0.250,H1 (< 0.75): supported
-"Kendall's W, campus range",0.337--0.578,,
-Mean pairwise tau-b (off-diagonal),0.302,min -0.415 (L3--L5),
-"Top-10\% Jaccard overlap, mean pair",0.456,top-20\%: 0.480; top-5: 0.492,
-"Consensus core (share of k, top-10\%)",0.000,top-5: 0.067,
-High-contrast entities (95\% CI),"26.8\% (24.4, 30.5)","top decile somewhere, below median elsewhere",
-Cost top-decile leavers (95\% CI),"45.5\% (27.3, 45.5)",out of top decile under $\geq 2$ other ledgers,H2 ($\geq$ 20\%): supported
-MEII significant vs N1 floor (Wilson CI),"69.5\% (58.9, 78.4)",cost-only floor: 97.6\%,H3 ($\geq$ 10\%): supported
-"Split-half consistency (N3, Spearman)","L1 0.99, L2 0.97, L3 1.00","L4 0.97, L5 0.69",
+Quantity,Value,Reference,Hypothesis,Decision interpretation
+Kendall's $W$ across burden measures (pooled),0.90,campus range 0.86--0.94; pairwise $\tau$-b 0.58--0.82,H1: supported,Burden measures are broadly interchangeable at portfolio scale
+Metric-sensitive entities vs. noise floor (work-order design),59.8%,year-block 51.2%; simulated Type-I 6.8% / 5.3% under the independent / dependent null worlds,H3: supported,Local metric sensitivity beyond finite-record noise; 11 of 82 change top-20% membership
+Risk vs. burden association ($\tau$-b),0.16,size-adjusted $\rho$ 0.28,H2: supported,Budget risk cannot be substituted by a burden ranking
+Minimax vs. cost-only worst-case regret,0.176 vs. 0.294,top-20% selection,H4: supported,Explicit optimization improves worst-case criterion coverage

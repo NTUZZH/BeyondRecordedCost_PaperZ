@@ -25,6 +25,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from p8_tables import TAB, jload, write_tex
 from utils.io import results_path
 
+
+def write_csv(name: str, header: list[str], rows: list[list[str]]) -> None:
+    """Machine-readable sibling of the LaTeX table, so the files the paper's
+    data-availability statement points to always match the printed tables."""
+    TAB.mkdir(exist_ok=True)
+    pd.DataFrame(rows, columns=header).to_csv(TAB / f"{name}.csv", index=False)
+
 RULE_NAMES = {
     "single_cost": "Recorded cost only", "single_labor": "Labor hours only",
     "single_volume": "Persistent volume only",
@@ -60,7 +67,8 @@ def t2_criteria():
         ("Tail expenditure",
          "Which systems accumulated the greatest excess cost from "
          "unusually expensive jobs?",
-         "Cost above the campus p95 threshold", "Currency",
+         "Cost above the campus 95th percentile of per-work-order cost",
+         "Currency",
          f"{sh['L4x']['mean']:.2f}"),
         ("Budget risk",
          "Which systems produced the largest annual budget surprises?",
@@ -75,6 +83,8 @@ def t2_criteria():
         body.append(" & ".join(r) + " \\\\")
     body += ["\\bottomrule", "\\end{tabular}"]
     write_tex("T2", "\n".join(body) + "\n")
+    write_csv("T2", ["Criterion", "Management question", "What it measures",
+                     "Units", "Reliability"], [list(r) for r in rows])
 
 
 def t3_stability_revised():
@@ -97,7 +107,8 @@ def t3_stability_revised():
          f"{100*d3['share_meii_b_sig_wo']:.1f}\\%",
          f"year-block {100*d3['share_meii_b_sig_year_block']:.1f}\\%; "
          f"simulated Type-I {100*sim['S0']['wo']['type1_meii_b']:.1f}\\% / "
-         f"{100*sim['S3']['wo']['type1_meii_b']:.1f}\\% (S0/S3)",
+         f"{100*sim['S3']['wo']['type1_meii_b']:.1f}\\% under the independent "
+         f"/ dependent null worlds",
          "H3: supported",
          f"Local metric sensitivity beyond finite-record noise; "
          f"{n_change} of {n} change top-20\\% membership"),
@@ -122,6 +133,10 @@ def t3_stability_revised():
         body.append(" & ".join(r) + " \\\\")
     body += ["\\bottomrule", "\\end{tabular}"]
     write_tex("T3", "\n".join(body) + "\n")
+    write_csv("T3", ["Quantity", "Value", "Reference", "Hypothesis",
+                     "Decision interpretation"],
+              [[c.replace("\\%", "%").replace("\\ ", " ")
+                for c in r] for r in rows])
 
 
 def t4_profiles():
@@ -143,6 +158,9 @@ def t4_profiles():
             "Top-20\\% metric-dependent \\\\", "\\midrule"] + rows + [
             "\\bottomrule", "\\end{tabular}"]
     write_tex("T4", "\n".join(body) + "\n")
+    write_csv("T4", ["Profile", "Entities", "Share (%)", "Cost-weighted (%)",
+                     "Top-20% metric-dependent"],
+              [r.rstrip(" \\\\").split(" & ") for r in rows])
 
 
 def t5_rules():
@@ -153,14 +171,19 @@ def t5_rules():
             "Worst regret (top-10\\%) & Cost captured (\\%) \\\\", "\\midrule"]
     cap_map = {"single_cost": sl["q20"]["captured_cost_rule"],
                "minimax": sl["q20"]["captured_minimax"]}
+    csv_rows = []
     for key, name in RULE_NAMES.items():
         cap = (f"{100*cap_map[key]['L1']:.1f}" if key in cap_map else "")
-        body.append(
-            f"{name} & {q20[key]['worst_regret']:.3f} & "
-            f"{q20[key]['mean_regret']['L5r']:.3f} & "
-            f"{q10[key]['worst_regret']:.3f} & {cap} \\\\")
+        cells = [name, f"{q20[key]['worst_regret']:.3f}",
+                 f"{q20[key]['mean_regret']['L5r']:.3f}",
+                 f"{q10[key]['worst_regret']:.3f}", cap]
+        body.append(" & ".join(cells) + " \\\\")
+        csv_rows.append(cells)
     body += ["\\bottomrule", "\\end{tabular}"]
     write_tex("T5", "\n".join(body) + "\n")
+    write_csv("T5", ["Decision rule", "Worst regret (top-20%)",
+                     "Risk regret", "Worst regret (top-10%)",
+                     "Cost captured (%)"], csv_rows)
 
 
 def a6_simulation():
@@ -198,11 +221,13 @@ def a7_diagnostics():
             f"{nm} & {d2['split_half'][l]['mean']:.2f} & "
             f"{d2['loyo_rank_consistency'][l]['min']:.2f} & "
             f"{d2['size_dependence'][l]:.2f} \\\\")
+    # The conventional CV is reported only to document its size gradient; it
+    # is not a CMERF criterion, so its reliability columns stay empty ("n/a").
     rows.append(
-        f"Coefficient of variation (conventional) &  &  & "
+        f"Coefficient of variation (conventional) & n/a & n/a & "
         f"{d2['size_dependence']['L5cv']:.2f} \\\\")
     body = ["\\begin{tabular}{p{4.6cm}ccc}", "\\toprule",
-            "Criterion & Split-half $\\rho$ & LOYO $\\tau$-b (min) & "
+            "Criterion & Split-half $\\rho$ & Leave-one-year-out $\\tau$-b (min) & "
             "Size dependence $\\rho$ \\\\", "\\midrule"] + rows + [
             "\\bottomrule", "\\end{tabular}"]
     write_tex("A7", "\n".join(body) + "\n")
@@ -242,7 +267,8 @@ def a9_mapping():
          "Work-order count weighted by temporal persistence",
          "Operations manager", "Process improvement",
          "Count", "Approx.", "Positive"),
-        ("L4 Tail expenditure", "Cost in excess of the campus p95 threshold",
+        ("L4 Tail expenditure",
+         "Cost above the campus 95th percentile of per-work-order cost",
          "Financial planner", "Contingency reserves",
          "Currency", "Yes", "Positive"),
         ("L5 Budget risk", "SD of two-way-demeaned annual cost",
