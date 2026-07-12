@@ -1,12 +1,10 @@
-\begin{tabular}{p{5.4cm}p{2.8cm}p{3.4cm}p{4.2cm}}
+\begin{tabular}{p{3.4cm}p{1.5cm}p{3.6cm}p{1.9cm}p{4.2cm}}
 \toprule
-Metric & Value & Reference & Hypothesis \\
+Quantity & Value & Reference & Hypothesis & Decision interpretation \\
 \midrule
-Burden-family Kendall's $W$ (pooled) & 0.90 & campus range 0.86--0.94 & H1 (substantial, $<1$): supported \\
-Pairwise $\tau$-b within burden family & 0.58--0.82 &  &  \\
-Risk vs.\ burden association ($\tau$-b) & 0.16 & size-adjusted $\rho$ 0.28 & H2 (distinct objective): supported \\
-MEII$_b$ significant vs.\ N1 floor (WO design) & 59.8\% & year-block design 51.2\% & H3 ($\geq$ 10\%): supported \\
-Simulated Type-I of the flag (S0/S3) & 6.8\% / 5.3\% & nominal 5\% &  \\
-Minimax vs.\ cost-only worst regret & 0.176 vs.\ 0.294 & top-20\% selection & H4 (explicit optimization helps): supported \\
+Kendall's $W$ across burden measures (pooled) & 0.90 & campus range 0.86--0.94; pairwise $\tau$-b 0.58--0.82 & H1: supported & Burden measures are broadly interchangeable at portfolio scale \\
+Metric-sensitive entities vs.\ noise floor (work-order design) & 59.8\% & year-block 51.2\%; simulated Type-I 6.8\% / 5.3\% (S0/S3) & H3: supported & Local metric sensitivity beyond finite-record noise; 11 of 82 change top-20\% membership \\
+Risk vs.\ burden association ($\tau$-b) & 0.16 & size-adjusted $\rho$ 0.28 & H2: supported & Budget risk cannot be substituted by a burden ranking \\
+Minimax vs.\ cost-only worst-case regret & 0.176 vs.\ 0.294 & top-20\% selection & H4: supported & Explicit optimization improves worst-case criterion coverage \\
 \bottomrule
 \end{tabular}

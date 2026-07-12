@@ -1,7 +1,8 @@
 """Phase 7b: revised manuscript figures for the two-layer framework.
 
-Replaces F1, F3-F7 and adds F9 (simulation calibration). F2 (data overview)
-and F8 (robustness) are still produced by p7_figures.py.
+Replaces F1, F3-F7, F9 (main-text simulation calibration) and FS1 (full
+simulation panel for the Supplementary Material). F2 (data overview) and
+F8 (robustness) are still produced by p7_figures.py.
 """
 
 from __future__ import annotations
@@ -22,81 +23,124 @@ from utils.io import results_path  # noqa: E402
 RV_COLOR = {"L1": OI["blue"], "L2": OI["orange"], "L3": OI["green"],
             "L4x": OI["vermillion"], "L5r": OI["purple"]}
 RV_NAME = {"L1": "Recorded cost", "L2": "Labor hours",
-           "L3": "Persistent volume", "L4x": "Tail exposure",
+           "L3": "Persistent volume", "L4x": "Tail expenditure",
            "L5r": "Budget risk"}
 BURDEN = ["L1", "L2", "L3", "L4x"]
 PROFILE_COLOR = {"stable_aligned": "#BBBBBB",
                  "stable_divergent": OI["purple"],
                  "unstable_aligned": OI["blue"],
                  "unstable_divergent": OI["vermillion"]}
-PROFILE_NAME = {"stable_aligned": "burden-stable / risk-aligned",
-                "stable_divergent": "burden-stable / risk-divergent",
-                "unstable_aligned": "burden-unstable / risk-aligned",
-                "unstable_divergent": "burden-unstable / risk-divergent"}
+# Profile labels state the diagnosis and the action it supports.
+PROFILE_NAME = {
+    "stable_aligned":
+        "metric-stable / risk-aligned $\\rightarrow$ one metric adequate",
+    "stable_divergent":
+        "metric-stable / repositioned by risk $\\rightarrow$ separate risk review",
+    "unstable_aligned":
+        "metric-sensitive / risk-aligned $\\rightarrow$ disclose criterion",
+    "unstable_divergent":
+        "metric-sensitive / repositioned by risk $\\rightarrow$ multi-criteria rule",
+}
 
 
 def f1_two_layer():
-    fig, ax = plt.subplots(figsize=(W2, 2.9))
+    """Decision-oriented framework diagram: records -> two layers (each with
+    its management question) -> diagnostics -> entity diagnosis -> robust
+    shortlist."""
+    fig, ax = plt.subplots(figsize=(W2, 4.5))
     ax.set_xlim(0, 100)
-    ax.set_ylim(0, 38)
+    ax.set_ylim(0, 60)
     ax.axis("off")
 
-    def box(x, y, w, h, text, fc="#F7F7F7", ec="#555555", fs=7, bold=False,
-            lw=0.8):
+    def box(x, y, w, h, text, fc="#F7F7F7", ec="#555555", fs=6.6,
+            bold=False, lw=0.8, align="center"):
         ax.add_patch(patches.FancyBboxPatch(
             (x, y), w, h, boxstyle="round,pad=0.4", fc=fc, ec=ec, lw=lw))
-        ax.text(x + w / 2, y + h / 2, text, ha="center", va="center",
-                fontsize=fs, fontweight="bold" if bold else "normal")
+        if align == "center":
+            ax.text(x + w / 2, y + h / 2, text, ha="center", va="center",
+                    fontsize=fs, fontweight="bold" if bold else "normal")
+        else:
+            ax.text(x + 1.2, y + h - 1.2, text, ha="left", va="top",
+                    fontsize=fs, fontweight="bold" if bold else "normal")
 
     def arrow(x0, y0, x1, y1):
         ax.annotate("", xy=(x1, y1), xytext=(x0, y0),
-                    arrowprops=dict(arrowstyle="->", lw=0.9, color="#555555"))
+                    arrowprops=dict(arrowstyle="->", lw=0.9,
+                                    color="#555555"))
 
-    box(0.5, 14, 15, 10, "CMMS\nwork-order\nrecords", fc="#E8E8E8", bold=True)
+    # Source records
+    box(0.5, 24, 12.5, 12, "CMMS\nwork-order\nrecords\n(cost, hours,\n"
+        "dates, system)", fc="#E8E8E8", bold=True, fs=6.4)
 
-    # Layer A container
-    ax.add_patch(patches.FancyBboxPatch((20.5, 9.5), 21.5, 27,
-                 boxstyle="round,pad=0.5", fc="none", ec="#888888",
-                 lw=1.0, linestyle="--"))
-    ax.text(31.2, 38.4, "Layer A: related burden representations",
-            ha="center", fontsize=6.8, color="#333333", style="italic")
-    for l, y in zip(BURDEN, (30.5, 24.5, 18.5, 12.5)):
-        box(22, y, 18.5, 4.6, f"{l.replace('x','*')}  {RV_NAME[l]}",
-            fc="white", ec=RV_COLOR[l], fs=6.8)
-        arrow(15.5, 19, 21.5, y + 2.3)
-    # Layer B
-    ax.add_patch(patches.FancyBboxPatch((20.5, 1.0), 21.5, 6.4,
-                 boxstyle="round,pad=0.5", fc="none", ec=OI["purple"],
-                 lw=1.0, linestyle="--"))
-    ax.text(31.2, 0.0, "Layer B: distinct management objective",
-            ha="center", va="top", fontsize=6.8, color="#333333",
-            style="italic")
-    box(22, 2.2, 18.5, 4.2, "L5*  Budget risk", fc="white",
-        ec=RV_COLOR["L5r"], fs=6.8)
-    arrow(15.5, 16, 21.5, 4.5)
+    # ---- Layer A ----------------------------------------------------------
+    ax.add_patch(patches.FancyBboxPatch((17, 33), 30, 26,
+                 boxstyle="round,pad=0.5", fc="#FBFBFB", ec="#666666",
+                 lw=1.0))
+    ax.text(32, 57.2, "LAYER A: same prioritization question",
+            ha="center", fontsize=6.6, fontweight="bold", color="#333333")
+    ax.text(32, 54.2, "Which systems create the greatest realized burden?",
+            ha="center", fontsize=6.4, style="italic", color="#333333")
+    names = [("Cost", "L1"), ("Labor", "L2"),
+             ("Persistent\nvolume", "L3"), ("Tail\nexpenditure", "L4x")]
+    for k, (nm, code) in enumerate(names):
+        bx = 18.5 + (k % 2) * 14.2
+        by = 43.5 - (k // 2) * 8.6
+        box(bx, by, 13.0, 7.0, nm, fc="white", ec=RV_COLOR[code], fs=6.4)
+    arrow(13.5, 32, 16.5, 44)
 
-    box(48, 24, 19, 10, "Within-family stability\nKendall $W$, top-$k$ overlap,"
-        "\nMEII$_b$ vs validated\nnoise floors", fs=6.6)
-    box(48, 10.5, 19, 9, "Cross-objective\ndivergence\nrisk gap, quadrant\nprofiles",
-        fs=6.6)
-    for y in (32.8, 26.8, 20.8, 14.8):
-        arrow(40.5 + 0.5, y, 47.5, 29)
-    arrow(40.5 + 0.5, 4.3, 47.5, 14)
-    box(73, 17, 15, 11, "Robust\nshortlisting\nminimax regret,\nstakeholder\nweights", fs=6.6)
-    arrow(67.5, 29, 72.5, 24.5)
-    arrow(67.5, 15, 72.5, 20.5)
-    box(92, 19, 7.5, 7, "Priority\nshortlist", fc="#E8E8E8", bold=True, fs=6.6)
-    arrow(88.5, 22.5, 91.5, 22.5)
-    ax.text(57.5, 5.2, "noise calibration validated by simulation\n"
-            "(work-order and year-block resampling)",
-            ha="center", fontsize=6.2, color="#444444")
+    # ---- Layer B ----------------------------------------------------------
+    ax.add_patch(patches.FancyBboxPatch((17, 8), 30, 18,
+                 boxstyle="round,pad=0.5", fc="#FBFBFB", ec=OI["purple"],
+                 lw=1.0))
+    ax.text(32, 24.2, "LAYER B: different management objective",
+            ha="center", fontsize=6.6, fontweight="bold", color="#333333")
+    ax.text(32, 21.2, "Which systems create the largest annual budget\n"
+            "surprises?", ha="center", va="top", fontsize=6.4,
+            style="italic", color="#333333")
+    box(18.5, 9.5, 27, 6.2, "Budget risk: common-shock-adjusted\n"
+        "annual spending volatility", fc="white", ec=RV_COLOR["L5r"],
+        fs=6.4)
+    arrow(13.5, 26, 16.5, 17)
+
+    # ---- Diagnostics ------------------------------------------------------
+    box(51, 38, 22, 17,
+        "Question A\nDoes the priority change with\nthe measure beyond "
+        "finite-\nrecord noise?\nKendall $W$ + top-$k$ overlap +\n"
+        "rank spread $I^B$ vs matched\nnoise floors", fs=6.0)
+    ax.text(62, 35.6, "simulation-validated;\nwork-order + year-block "
+            "resampling", ha="center", va="top", fontsize=5.6,
+            color="#444444")
+    box(51, 10, 22, 12,
+        "Question B\nHow far does budget risk\nreposition the burden\n"
+        "priority?\nrisk-repositioning gap $G$", fs=6.0)
+    arrow(47.5, 46, 50.5, 46)
+    arrow(47.5, 16, 50.5, 16)
+
+    # ---- Diagnosis and decision ------------------------------------------
+    box(77, 30, 22.5, 27,
+        "TWO-DIMENSIONAL ENTITY DIAGNOSIS\n"
+        "metric-stable + risk-aligned\n$\\rightarrow$ one burden metric "
+        "adequate\n"
+        "metric-stable + repositioned\n$\\rightarrow$ add separate risk "
+        "review\n"
+        "metric-sensitive + risk-aligned\n$\\rightarrow$ disclose criterion, "
+        "check\nboundary cases\n"
+        "metric-sensitive + repositioned\n$\\rightarrow$ explicit "
+        "multi-criteria rule", fs=5.7)
+    arrow(73.5, 46, 76.5, 46)
+    arrow(73.5, 16, 76.5, 38)
+    box(77, 2, 22.5, 12,
+        "ROBUST PRIORITY DECISION\nminimax regret + stakeholder-\nweight "
+        "sensitivity $\\rightarrow$ robust core,\ncontested frontier, "
+        "auditable\nshortlist", fc="#E8E8E8", fs=5.9, bold=False)
+    arrow(88, 29.5, 88, 14.5)
     save(fig, "F1_framework")
 
 
 def f3_agreement():
     df = pd.read_csv(results_path("p2b_ledgers_entity.csv"))
     d3 = jload("p3d_revised.json")
-    fig, axes = plt.subplots(1, 2, figsize=(W2, 2.9),
+    fig, axes = plt.subplots(1, 2, figsize=(W2, 3.1),
                              gridspec_kw={"width_ratios": [1, 1.15]})
     ax = axes[0]
     camp = sorted(d3["W_burden_by_campus"])
@@ -104,12 +148,12 @@ def f3_agreement():
     ax.scatter(range(len(camp)), vals, color=OI["blue"], s=26, zorder=3)
     ax.axhline(d3["W_burden_pooled"], color="#333333", ls="--", lw=0.9)
     ax.text(0.02, d3["W_burden_pooled"] - 0.05,
-            f"pooled $W_b$ = {d3['W_burden_pooled']:.2f}", fontsize=6.5)
+            f"pooled $W$ = {d3['W_burden_pooled']:.2f}", fontsize=6.5)
     ax.set_xticks(range(len(camp)), [f"U{int(c):02d}" for c in camp],
                   fontsize=6.5)
     ax.set_ylim(0.4, 1.0)
-    ax.set_ylabel("Kendall's $W$ across burden ledgers", fontsize=7)
-    ax.set_title("(a) Burden-family concordance by campus", loc="left")
+    ax.set_ylabel("Kendall's $W$ across burden measures", fontsize=7)
+    ax.set_title("(a) Burden concordance by campus", loc="left")
     ax.grid(axis="y")
 
     ax = axes[1]
@@ -124,7 +168,7 @@ def f3_agreement():
             ok = x.notna() & y.notna()
             M[i, j] = kendalltau(x[ok], y[ok]).statistic
     im = ax.imshow(M, vmin=-1, vmax=1, cmap="RdBu_r")
-    labs = ["L1\nCost", "L2\nLabor", "L3\nVolume", "L4*\nTail", "L5*\nRisk"]
+    labs = ["Cost", "Labor", "Volume", "Tail", "Budget\nrisk"]
     ax.set_xticks(range(n), labs, fontsize=6.3)
     ax.set_yticks(range(n), labs, fontsize=6.3)
     for i in range(n):
@@ -134,7 +178,19 @@ def f3_agreement():
                     color="white" if abs(M[i, j]) > 0.55 else "black")
     ax.axhline(3.5, color="#333333", lw=1.4)
     ax.axvline(3.5, color="#333333", lw=1.4)
-    ax.set_title("(b) Pairwise Kendall $\\tau$-b (pooled)", loc="left")
+    # Bracket grouping the four burden measures above the heat map.
+    ax.annotate("alternative burden measures",
+                xy=(1.5, -0.62), xytext=(1.5, -0.62),
+                ha="center", fontsize=6.2, color="#333333",
+                annotation_clip=False)
+    ax.plot([-0.45, 3.45], [-0.48, -0.48], color="#333333", lw=0.9,
+            clip_on=False)
+    ax.plot([-0.45, -0.45], [-0.48, -0.40], color="#333333", lw=0.9,
+            clip_on=False)
+    ax.plot([3.45, 3.45], [-0.48, -0.40], color="#333333", lw=0.9,
+            clip_on=False)
+    ax.set_title("(b) Pairwise Kendall $\\tau$-b (pooled)", loc="left",
+                 pad=16)
     fig.colorbar(im, ax=ax, fraction=0.046, pad=0.03)
     fig.tight_layout()
     save(fig, "F3_agreement")
@@ -162,7 +218,7 @@ def f4_bump():
             ax.plot(x, y, color=color, lw=lw, alpha=0.9 if istop else 0.6,
                     marker="o", ms=2.4 if istop else 1.4)
         ax.set_xticks(x, ["Cost", "Labor", "Volume", "Tail"], fontsize=6.3)
-        ax.set_title(f"U{c:02d}  ($W_b$ = {Wc[c]:.2f})", fontsize=7.5)
+        ax.set_title(f"U{c:02d}  ($W$ = {Wc[c]:.2f})", fontsize=7.5)
         ax.set_ylim(0, 1.03)
         ax.grid(axis="y")
     axes[0].set_ylabel("Within-campus percentile rank", fontsize=7)
@@ -182,18 +238,20 @@ def f5_meii_floor():
         lim = max(f.max(), o.max()) * 1.1
         ax.plot([0, lim], [0, lim], color="#999999", lw=0.8, ls="--")
         ax.scatter(f[~sig], o[~sig], facecolor="none", edgecolor="#777777",
-                   s=18, lw=0.8, label="not significant")
+                   s=18, lw=0.8, label="within noise floor")
         ax.scatter(f[sig], o[sig], color=OI["blue"], s=18,
-                   label="significant (MEII$_b$ > floor p95)")
+                   label="metric-sensitive beyond noise floor")
         share = 100 * sig.mean()
         ax.set_title(f"({'ab'[mode=='year_block']}) {label}: "
-                     f"{share:.0f}\\% significant".replace("\\%", "%"),
+                     f"{share:.0f}\\% flagged".replace("\\%", "%"),
                      loc="left", fontsize=7.5)
-        ax.set_xlabel("Matched noise floor, 95th percentile", fontsize=7)
+        ax.set_xlabel("Expected rank spread from matched resampling\n"
+                      "(95th percentile)", fontsize=7)
         ax.set_xlim(0, lim)
         ax.set_ylim(0, lim)
         ax.grid(True, lw=0.3)
-    axes[0].set_ylabel("Observed MEII$_b$", fontsize=7)
+    axes[0].set_ylabel("Observed within-burden rank spread $I^B$",
+                       fontsize=7)
     axes[1].legend(loc="lower right", fontsize=6, frameon=True,
                    framealpha=0.9)
     fig.tight_layout()
@@ -203,9 +261,11 @@ def f5_meii_floor():
 def f6_profile_map():
     ent = pd.read_csv(results_path("p3d_entity.csv"))
     d3 = jload("p3d_revised.json")
-    fig, ax = plt.subplots(figsize=(W2 * 0.72, 3.3))
+    fig, ax = plt.subplots(figsize=(W2 * 0.72, 3.4))
     q3 = d3["gap_upper_quartile"]
-    for prof, g in ent.groupby("profile"):
+    for prof in ("stable_aligned", "stable_divergent",
+                 "unstable_aligned", "unstable_divergent"):
+        g = ent[ent["profile"] == prof]
         contested = g["topk_burden_count"].isin([1, 2, 3])
         ax.scatter(g.loc[~contested, "meii_burden"],
                    g.loc[~contested, "gap_risk"],
@@ -218,15 +278,16 @@ def f6_profile_map():
                    facecolor=PROFILE_COLOR[prof], edgecolor="black",
                    lw=0.9, alpha=0.9)
     ax.axhline(q3, color="#888888", lw=0.8, ls=":")
-    ax.text(ax.get_xlim()[1] * 0.99, q3 + 0.012, "risk-gap upper quartile",
+    ax.text(ax.get_xlim()[1] * 0.99, q3 + 0.012,
+            "repositioned by risk above this line (gap upper quartile)",
             ha="right", fontsize=6, color="#555555")
-    ax.set_xlabel("Within-burden instability MEII$_b$", fontsize=7.5)
-    ax.set_ylabel("Risk gap  $|r_{L5^*} - \\mathrm{med}(r_{burden})|$",
-                  fontsize=7.5)
-    leg = ax.legend(loc="upper right", fontsize=5.8, frameon=True,
-                    framealpha=0.92, title="profile (black edge = top-20\\%"
-                    " membership criterion-dependent)".replace("\\%", "%"))
-    leg.get_title().set_fontsize(5.8)
+    ax.set_xlabel("Within-burden rank spread $I^B$", fontsize=7.5)
+    ax.set_ylabel("Risk-repositioning gap $G$", fontsize=7.5)
+    leg = ax.legend(loc="upper right", fontsize=5.6, frameon=True,
+                    framealpha=0.92,
+                    title="profile and supported action (black edge = "
+                          "top-20% membership metric-dependent)")
+    leg.get_title().set_fontsize(5.6)
     ax.grid(True, lw=0.3)
     fig.tight_layout()
     save(fig, "F6_archetypes")
@@ -281,10 +342,7 @@ def f7_decision():
     save(fig, "F7_decision")
 
 
-def f9_simulation():
-    sim = jload("p3e_simulation.json")
-    fig, axes = plt.subplots(1, 2, figsize=(W2, 2.7))
-    ax = axes[0]
+def _sim_type1_panel(ax, sim):
     scens = ["S0", "S3"]
     x = np.arange(len(scens))
     for off, mode, color, lab in ((-0.17, "wo", OI["blue"],
@@ -296,25 +354,40 @@ def f9_simulation():
         for xi, v in zip(x + off, vals):
             ax.text(xi, v + 0.25, f"{v:.1f}", ha="center", fontsize=6)
     ax.axhline(5.0, color="#333333", lw=0.9, ls="--")
-    ax.text(1.42, 5.35, "nominal 5%", fontsize=6, color="#333333",
-            ha="right")
+    ax.text(0.5, 5.25, "nominal 5%", fontsize=6, color="#333333",
+            ha="center")
     ax.set_xticks(x, ["S0 independent null", "S3 dependent null"],
                   fontsize=6.5)
     ax.set_ylabel("Per-entity Type-I error (%)", fontsize=7)
     ax.set_ylim(0, 11)
     ax.legend(fontsize=6, frameon=False)
-    ax.set_title("(a) Calibration of the MEII$_b$ flag", loc="left")
     ax.grid(axis="y")
 
+
+def f9_simulation():
+    """Main-text calibration figure: Type-I error only. The full power and
+    localization panel is exported separately for the Supplementary
+    Material (FS1)."""
+    sim = jload("p3e_simulation.json")
+    fig, ax = plt.subplots(figsize=(W2 * 0.55, 2.7))
+    _sim_type1_panel(ax, sim)
+    ax.set_title("Calibration of the metric-sensitivity flag", loc="left")
+    fig.tight_layout()
+    save(fig, "F9_simulation")
+
+    # Supplementary version: calibration + power/localization.
+    fig, axes = plt.subplots(1, 2, figsize=(W2, 2.7))
+    _sim_type1_panel(axes[0], sim)
+    axes[0].set_title("(a) Calibration of the $I^B$ flag", loc="left")
     ax = axes[1]
     bars = [
-        ("MEII$_b$ power\n(S2 divergent)", 100 * sim["S2"]["wo"]
+        ("$I^B$ power\n(S2 divergent)", 100 * sim["S2"]["wo"]
          ["power_meii_b_on_divergent"], OI["blue"]),
-        ("MEII$_b$ spillover\n(S2 null entities)", 100 * sim["S2"]["wo"]
+        ("$I^B$ spillover\n(S2 null entities)", 100 * sim["S2"]["wo"]
          ["type1_meii_b"], OI["sky"]),
-        ("GAP top-3 recall\n(S1 divergent)", 100 * sim["S1"]["wo"]
+        ("gap top-3 recall\n(S1 divergent)", 100 * sim["S1"]["wo"]
          ["gap_top3_recall_divergent"], OI["purple"]),
-        ("GAP flag power\n(S1, per-entity test)", 100 * sim["S1"]["wo"]
+        ("gap flag power\n(S1, per-entity test)", 100 * sim["S1"]["wo"]
          ["power_gap_on_divergent"], "#999999"),
     ]
     x = np.arange(len(bars))
@@ -327,7 +400,7 @@ def f9_simulation():
     ax.set_title("(b) Power and localization", loc="left")
     ax.grid(axis="y")
     fig.tight_layout()
-    save(fig, "F9_simulation")
+    save(fig, "FS1_simulation_full")
 
 
 if __name__ == "__main__":
