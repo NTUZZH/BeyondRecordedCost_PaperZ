@@ -1,8 +1,8 @@
-# Beyond Recorded Cost: CMERF
+# CMERF: CMMS Multi-criteria Economic Robustness Framework
 
-Analysis code and machine-generated results for the paper *Beyond Recorded
-Cost: A Noise-Calibrated Multi-Criteria Framework for Priority Stability in
-CMMS Work Orders*.
+Analysis code and machine-generated results for the paper *Which Systems
+Deserve Attention First? Governing Metric Choice and Budget Risk in
+CMMS-Based Maintenance Prioritization*.
 
 CMERF (CMMS Multi-criteria Economic Robustness Framework) reads one CMMS
 work-order table on two layers: four alternative measures of realized
@@ -47,7 +47,7 @@ the constant-currency deflation are included under `data/raw/cpi/`.
 | `config.yaml` | every analysis parameter and the random seed |
 | `run_all.sh` | one-command reproduction |
 | `results/` | machine-generated JSON/CSV, the single source of truth for every reported number |
-| `tables/` | manuscript tables T1..T5 (LaTeX + CSV) and supplementary tables A1, A6..A9 |
+| `tables/` | manuscript tables T1..T5 (LaTeX + CSV) and manuscript appendix tables A1, A6..A9 |
 | `assets/fonts/` | TrueType build of TeX Gyre Termes (GUST Font License), so figures render in the same Times face as the paper; rebuild with `python src/utils/make_fonts.py` |
 
 ## Pipeline stages
