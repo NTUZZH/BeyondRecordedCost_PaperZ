@@ -1,8 +1,8 @@
 # CMERF: CMMS Multi-criteria Economic Robustness Framework
 
-Analysis code and machine-generated results for the paper *Which Systems
-Deserve Attention First? Governing Metric Choice and Budget Risk in
-CMMS-Based Maintenance Prioritization*.
+Analysis code and machine-generated results for the paper *Which Assets
+Deserve Attention First? Metric Choice and Budget Risk in Maintenance
+Prioritization from Infrastructure Work-Order Records*.
 
 CMERF (CMMS Multi-criteria Economic Robustness Framework) reads one CMMS
 work-order table on two layers: four alternative measures of realized
