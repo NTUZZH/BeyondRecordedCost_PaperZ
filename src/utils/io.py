@@ -1,4 +1,4 @@
-"""Shared I/O helpers for the Paper Z (CMERF) pipeline.
+"""Shared I/O helpers for the CMERF pipeline.
 
 All scripts read parameters from config.yaml (single source of truth) and
 write machine-readable outputs to results/. The raw FMUCD table is read-only.
@@ -17,7 +17,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[2]
 RAW_CSV = ROOT / "data" / "raw" / "FMUCD.csv"
 
-# Columns of FMUCD.csv relevant to Paper Z (weather columns and building
+# Columns of FMUCD.csv relevant to this study (weather columns and building
 # condition metrics are deliberately not loaded).
 USECOLS = [
     "UniversityID",

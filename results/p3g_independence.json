@@ -1,0 +1,14 @@
+{
+  "n_draws": 1000,
+  "burden_ranks": [
+    "r_L1",
+    "r_L2",
+    "r_L3",
+    "r_L4x"
+  ],
+  "W_perm_mean": 0.2519,
+  "W_perm_p95": 0.3126,
+  "meii_b_perm_mean": 0.2722,
+  "meii_b_perm_p5": 0.2584,
+  "meii_b_perm_p95": 0.2843
+}

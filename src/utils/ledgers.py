@@ -109,10 +109,38 @@ REVISED_ALL = REVISED_BURDEN + ["L5r"]
 
 
 def _two_way_demean(M: np.ndarray) -> np.ndarray:
-    """Residuals of a balanced two-way layout (entity + year effects)."""
+    """Residuals of a balanced two-way layout (entity + year effects).
+    Additive form: every entity absorbs the same currency amount of the
+    campus-year effect. Kept only for the additive sensitivity variant
+    (L5r_add); the primary criterion uses risk_residuals()."""
     row = M.mean(axis=1, keepdims=True)
     col = M.mean(axis=0, keepdims=True)
     return M - row - col + M.mean()
+
+
+def risk_residuals(M: np.ndarray) -> np.ndarray:
+    """Budget-risk residuals with a proportional campus-year adjustment.
+
+    M is the (E, Y) constant-currency annual cost panel of one campus.
+    Entity i's expected cost in year y is its mean annual cost scaled by
+    the campus spending index of that year computed from the OTHER
+    entities, f_y^(-i) = T_y^(-i) / mean_y T^(-i), so a system's own swings
+    never define the campus shock it is adjusted for, and a campus-wide
+    budget cycle moves every system in proportion to its size. The
+    residual is the system's own deviation from that expectation."""
+    M = np.asarray(M, dtype=float)
+    T = M.sum(axis=0, keepdims=True)
+    T_other = T - M
+    mean_other = T_other.mean(axis=1, keepdims=True)
+    f = np.divide(T_other, mean_other, out=np.ones_like(T_other),
+                  where=mean_other > 0)
+    return M - M.mean(axis=1, keepdims=True) * f
+
+
+def risk_sd(M: np.ndarray) -> np.ndarray:
+    """Primary budget-risk criterion: SD over window years of the
+    proportional-adjustment residuals (currency units)."""
+    return risk_residuals(M).std(axis=1, ddof=1)
 
 
 def annual_panel(wo: pd.DataFrame, campus: int, entities: list[str],
@@ -149,9 +177,12 @@ def revised_ledger_scores(
          the persistence factor also reported separately (L3p)
     L4x  tail-cost exposure: sum of cost above the campus p95 threshold,
          counted in EXCESS of the threshold (excess-over-threshold)
-    L5r  budget risk: SD of the two-way-demeaned annual constant-currency
-         cost over the full campus window (inactive years = true zeros);
-         removes entity level and campus-year common shocks, monetary units
+    L5r  budget risk: SD over the full campus window (inactive years =
+         true zeros) of the deviation of annual constant-currency cost from
+         the entity's mean scaled by the leave-one-out campus spending index
+         of that year (risk_residuals); monetary units
+    L5r_add  additive sensitivity variant: SD of the two-way-demeaned
+         annual cost (equal currency shock for every entity)
     L5r_shrunk  partial-pooling variant (weight n_y/(n_y+kappa) toward the
          campus median SD)
     L5mae  rolling one-step-ahead mean absolute forecast error (mean of
@@ -166,8 +197,8 @@ def revised_ledger_scores(
         tau = quantile_type1(gc["cost2021"].to_numpy(), tau_pct / 100.0)
         entities = sorted(gc["entity"].unique())
         M = annual_panel(wo, c, entities, window_years[c])
-        resid = _two_way_demean(M)
-        sd = resid.std(axis=1, ddof=1)
+        sd = risk_sd(M)
+        sd_add = _two_way_demean(M).std(axis=1, ddof=1)
         med_sd = float(np.median(sd))
         nY = M.shape[1]
         w_sh = nY / (nY + shrink_kappa)
@@ -202,6 +233,7 @@ def revised_ledger_scores(
                 "L4sev": float((cost21[cost21 > tau] - tau).mean())
                          if (cost21 > tau).any() else 0.0,
                 "L5r": float(sd[i]),
+                "L5r_add": float(sd_add[i]),
                 "L5r_shrunk": float(w_sh * sd[i] + (1 - w_sh) * med_sd),
                 "L5mae": float(np.mean(errs)) if errs else np.nan,
                 "L5cv": cv,

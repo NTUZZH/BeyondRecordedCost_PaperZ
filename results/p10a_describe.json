@@ -1,0 +1,73 @@
+{
+  "campus": {
+    "U01": {
+      "taub_cost_labor": 0.8476190476190477,
+      "taub_nonlabor_labor": 0.6380952380952382,
+      "taub_cost_volume": 0.8095238095238096,
+      "taub_labor_volume": 0.7714285714285715
+    },
+    "U02": {
+      "taub_cost_labor": 0.7362637362637363,
+      "taub_nonlabor_labor": 0.6043956043956044,
+      "taub_cost_volume": 0.7362637362637363,
+      "taub_labor_volume": 0.6923076923076924
+    },
+    "U04": {
+      "taub_cost_labor": 0.8095238095238096,
+      "taub_nonlabor_labor": 0.5428571428571429,
+      "taub_cost_volume": 0.6000000000000001,
+      "taub_labor_volume": 0.6761904761904762
+    },
+    "U05": {
+      "taub_cost_labor": 0.8095238095238096,
+      "taub_nonlabor_labor": 0.8095238095238096,
+      "taub_cost_volume": 0.7142857142857143,
+      "taub_labor_volume": 0.5238095238095238
+    },
+    "U08": {
+      "taub_cost_labor": 0.8529411764705882,
+      "taub_nonlabor_labor": 0.7205882352941176,
+      "taub_cost_volume": 0.6176470588235293,
+      "taub_labor_volume": 0.588235294117647
+    },
+    "U09": {
+      "taub_cost_labor": 0.9340659340659341,
+      "taub_nonlabor_labor": 0.5679073437544012,
+      "taub_cost_volume": 0.8901098901098902,
+      "taub_labor_volume": 0.8681318681318682
+    }
+  },
+  "risk_rel_median": 0.35026427954335626,
+  "risk_rel_q1": 0.19650978424779172,
+  "risk_rel_q3": 0.5421868988253306,
+  "taub_cost_labor_min": 0.7362637362637363,
+  "taub_cost_labor_max": 0.9340659340659341,
+  "taub_nonlabor_labor_min": 0.5428571428571429,
+  "taub_nonlabor_labor_max": 0.8095238095238096,
+  "taub_nonlabor_labor_pooled": 0.6066296276412285,
+  "taub_cost_labor_pooled": 0.8065503520048973,
+  "buildings_total": 1487,
+  "campuses_with_building_ids": 4,
+  "wo_per_year_min": 13187.2,
+  "wo_per_year_max": 48033.6,
+  "ppm_share_min": 0.043631684243332094,
+  "ppm_share_max": 0.7974049585843586,
+  "example": {
+    "campus": "U08",
+    "n": 17,
+    "k": 4,
+    "top_system": "G20",
+    "top_cost_per_year_m": 1.4850476203320508,
+    "top_wo_per_year": 64.28571428571429,
+    "top_pos_vol": 12,
+    "leaving": [
+      "G20"
+    ],
+    "entering": [
+      "E10"
+    ],
+    "entering_cost_per_year_m": 0.5186701378930932,
+    "entering_wo_per_year": 924.8571428571429,
+    "entering_pos_cost": 5
+  }
+}

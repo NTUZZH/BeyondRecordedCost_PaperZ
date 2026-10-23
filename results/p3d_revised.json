@@ -16,19 +16,19 @@
     "L2_L4x": 0.742,
     "L3_L4x": 0.577
   },
-  "taub_risk_vs_medburden": 0.158,
-  "spearman_risk_vs_burden_size_adj": 0.281,
+  "taub_risk_vs_medburden": 0.72,
+  "spearman_risk_vs_burden_size_adj": 0.73,
   "share_meii_b_sig_wo": 0.5976,
   "share_gap_sig_wo": 0.0,
   "share_meii_b_sig_year_block": 0.5122,
   "share_gap_sig_year_block": 0.0,
   "profile_counts": {
-    "unstable_aligned": 36,
-    "stable_aligned": 25,
-    "unstable_divergent": 13,
-    "stable_divergent": 8
+    "unstable_aligned": 31,
+    "stable_aligned": 29,
+    "unstable_divergent": 18,
+    "stable_divergent": 4
   },
-  "gap_upper_quartile": 0.4392,
+  "gap_upper_quartile": 0.1429,
   "influence": {
     "mean_meii_b_leave_one_out": {
       "L1": 0.0934,

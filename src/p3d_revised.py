@@ -52,7 +52,10 @@ def build_boots(cfg, wo, mode: str) -> dict:
 def run_boot(cfg, wo, mode: str, B: int, jobs: int, seed: int) -> None:
     BOOT2.mkdir(exist_ok=True)
     boots = build_boots(cfg, wo, mode)
-    batch = max(1, B // max(jobs, 1))
+    # Fixed batch size: replicate seeds are keyed by batch start, so the
+    # replicates (and every floor) are identical whatever --jobs is. 250
+    # reproduces the released caches, which were built with --jobs 4.
+    batch = 250
     mode_id = {"wo": 0, "year_block": 1}[mode]
     for c, bt in boots.items():
         keys = []

@@ -1,0 +1,8 @@
+Criterion,Split-half \rho,Leave-one-year-out tau-b (min),Size dependence \rho
+Recorded cost,0.99,0.96,0.85
+Labor hours,0.97,0.94,0.81
+Persistent volume,1.00,0.96,1.00
+Tail expenditure,0.95,0.94,0.73
+Budget risk,0.89,0.86,0.70
+"Budget risk, additive adjustment",n/a,n/a,0.16
+Coefficient of variation of annual cost,n/a,n/a,-0.70

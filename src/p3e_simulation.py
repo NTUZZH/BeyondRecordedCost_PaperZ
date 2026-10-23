@@ -100,7 +100,7 @@ def one_world(seed: int, scenario: str, B: int):
                                     mode=mode)
         obs = bt.observed_scores()
         obs_r = rank_matrix(obs)
-        ranks = bt.run_batch((seed, 1, 0, hash(mode) % 97), B)
+        ranks = bt.run_batch((seed, 1, 0, {"wo": 0, "year_block": 1}[mode]), B)
         dev = ranks - obs_r[None, :, :]
         # MEII_b flag
         base = np.nanmean(obs_r[:, :4], axis=1)

@@ -1,0 +1,426 @@
+{
+  "H1": {
+    "per_campus": {
+      "1": {
+        "n": 15,
+        "W": 0.9371,
+        "chi2": 52.47,
+        "df": 14,
+        "p": 2.33623559101469e-06
+      },
+      "2": {
+        "n": 14,
+        "W": 0.8978,
+        "chi2": 46.69,
+        "df": 13,
+        "p": 1.0916442383991625e-05
+      },
+      "4": {
+        "n": 15,
+        "W": 0.8701,
+        "chi2": 48.72,
+        "df": 14,
+        "p": 9.965979617422824e-06
+      },
+      "5": {
+        "n": 7,
+        "W": 0.8571,
+        "chi2": 20.57,
+        "df": 6,
+        "p": 0.002189755435471432
+      },
+      "8": {
+        "n": 17,
+        "W": 0.8787,
+        "chi2": 56.24,
+        "df": 16,
+        "p": 2.2251307715692544e-06
+      },
+      "9": {
+        "n": 14,
+        "W": 0.9429,
+        "chi2": 49.03,
+        "df": 13,
+        "p": 4.371951047545523e-06
+      }
+    },
+    "pooled": {
+      "n": 82,
+      "W": 0.9006,
+      "chi2": 291.78,
+      "df": 81,
+      "p": 1.3994143616611265e-25,
+      "perm_p": 9.999000099990002e-05,
+      "perm_n": 10000
+    },
+    "topk_dependent_observed": 11,
+    "wo": {
+      "B": 1000,
+      "W_ci95": [
+        0.8902,
+        0.9067
+      ],
+      "W_null_mean": 0.988,
+      "W_null_p2_5": 0.9819,
+      "W_null_p97_5": 0.9928,
+      "p_incomplete": 0.000999000999000999,
+      "topk_null_mean": 3.65,
+      "topk_null_p95": 6.0,
+      "p_topk_beyond_noise": 0.000999000999000999
+    },
+    "year_block": {
+      "B": 1000,
+      "W_ci95": [
+        0.8788,
+        0.9072
+      ],
+      "W_null_mean": 0.9771,
+      "W_null_p2_5": 0.9633,
+      "W_null_p97_5": 0.9894,
+      "p_incomplete": 0.000999000999000999,
+      "topk_null_mean": 4.78,
+      "topk_null_p95": 8.0,
+      "p_topk_beyond_noise": 0.004995004995004995
+    }
+  },
+  "H2": {
+    "tau_risk_medburden": 0.72,
+    "tau_burden_min_pair": 0.577,
+    "tau_burden_mean_pair": 0.717,
+    "tau_risk_medburden_ci95": [
+      0.644,
+      0.782
+    ],
+    "diff_min_pair_minus_risk": -0.143,
+    "diff_min_pair_minus_risk_ci95": [
+      -0.246,
+      -0.046
+    ],
+    "p_diff_min_pair_le0": 0.9988002399520096,
+    "diff_mean_pair_minus_risk": -0.002,
+    "diff_mean_pair_minus_risk_ci95": [
+      -0.07,
+      0.069
+    ],
+    "p_diff_mean_pair_le0": 0.5352929414117177,
+    "size_adj_rho": 0.73,
+    "size_adj_perm_p": 9.999000099990002e-05,
+    "size_adj_rho_ci95": [
+      0.493,
+      0.83
+    ],
+    "rho_risk_medburden_within_campus": 0.891,
+    "reliability": {
+      "r_L5r": {
+        "split_half": 0.8851,
+        "spearman_brown": 0.939
+      },
+      "median_burden_rank": {
+        "split_half": 0.9795,
+        "spearman_brown": 0.9896
+      }
+    },
+    "rho_disattenuated": 0.924,
+    "K": 17,
+    "overlap_risk_top_with": {
+      "cost": 0.647,
+      "labor": 0.765,
+      "volume": 0.647,
+      "tail": 0.824,
+      "burden_mean": 0.647
+    },
+    "overlap_cost_ci95_wo": [
+      0.529,
+      0.824
+    ],
+    "overlap_burden_mean_ci95_wo": [
+      0.529,
+      0.765
+    ],
+    "overlap_cost_ci95_year_block": [
+      0.471,
+      0.765
+    ],
+    "overlap_burden_mean_ci95_year_block": [
+      0.471,
+      0.824
+    ]
+  },
+  "H3": {
+    "wo": {
+      "k": 49,
+      "n": 82,
+      "share": 0.5976,
+      "ci95": [
+        0.5008,
+        1.0
+      ],
+      "p_vs_10pct": 3.0004243725341185e-28,
+      "p_vs_5pct": 3.0476977605512965e-42,
+      "p_vs_sim_type1": 2.333647559672035e-36,
+      "sim_type1_used": 0.0667,
+      "bh_q05_count": 46,
+      "min_p": 0.001
+    },
+    "year_block": {
+      "k": 42,
+      "n": 82,
+      "share": 0.5122,
+      "ci95": [
+        0.4161,
+        1.0
+      ],
+      "p_vs_10pct": 6.83152402354914e-21,
+      "p_vs_5pct": 1.2738985900133067e-32,
+      "p_vs_sim_type1": 1.4749780266801754e-28,
+      "sim_type1_used": 0.0633,
+      "bh_q05_count": 34,
+      "min_p": 0.001
+    }
+  },
+  "H4": {
+    "rescore": {
+      "K": 17,
+      "wo": {
+        "mean_worst": {
+          "single_cost": 0.363,
+          "single_labor": 0.292,
+          "single_volume": 0.369,
+          "single_tail": 0.302,
+          "single_risk": 0.353,
+          "burden_mean": 0.335,
+          "burden_median": 0.292,
+          "all_mean": 0.312,
+          "minimax": 0.272
+        },
+        "single_cost": {
+          "share_minimax_lower": 0.888,
+          "share_minimax_le": 0.986,
+          "mean_diff": 0.091,
+          "diff_ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "single_labor": {
+          "share_minimax_lower": 0.404,
+          "share_minimax_le": 0.944,
+          "mean_diff": 0.02,
+          "diff_ci95": [
+            -0.059,
+            0.059
+          ]
+        },
+        "single_volume": {
+          "share_minimax_lower": 0.906,
+          "share_minimax_le": 0.996,
+          "mean_diff": 0.097,
+          "diff_ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "single_tail": {
+          "share_minimax_lower": 0.496,
+          "share_minimax_le": 0.852,
+          "mean_diff": 0.03,
+          "diff_ci95": [
+            -0.059,
+            0.118
+          ]
+        },
+        "single_risk": {
+          "share_minimax_lower": 0.789,
+          "share_minimax_le": 0.95,
+          "mean_diff": 0.082,
+          "diff_ci95": [
+            -0.059,
+            0.176
+          ]
+        },
+        "burden_mean": {
+          "share_minimax_lower": 0.67,
+          "share_minimax_le": 0.951,
+          "mean_diff": 0.063,
+          "diff_ci95": [
+            -0.059,
+            0.176
+          ]
+        },
+        "burden_median": {
+          "share_minimax_lower": 0.404,
+          "share_minimax_le": 0.944,
+          "mean_diff": 0.02,
+          "diff_ci95": [
+            -0.059,
+            0.059
+          ]
+        },
+        "all_mean": {
+          "share_minimax_lower": 0.492,
+          "share_minimax_le": 0.918,
+          "mean_diff": 0.04,
+          "diff_ci95": [
+            -0.059,
+            0.118
+          ]
+        }
+      },
+      "year_block": {
+        "mean_worst": {
+          "single_cost": 0.385,
+          "single_labor": 0.324,
+          "single_volume": 0.393,
+          "single_tail": 0.329,
+          "single_risk": 0.359,
+          "burden_mean": 0.37,
+          "burden_median": 0.324,
+          "all_mean": 0.334,
+          "minimax": 0.306
+        },
+        "single_cost": {
+          "share_minimax_lower": 0.781,
+          "share_minimax_le": 0.945,
+          "mean_diff": 0.079,
+          "diff_ci95": [
+            -0.059,
+            0.176
+          ]
+        },
+        "single_labor": {
+          "share_minimax_lower": 0.449,
+          "share_minimax_le": 0.862,
+          "mean_diff": 0.018,
+          "diff_ci95": [
+            -0.059,
+            0.059
+          ]
+        },
+        "single_volume": {
+          "share_minimax_lower": 0.805,
+          "share_minimax_le": 0.976,
+          "mean_diff": 0.087,
+          "diff_ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "single_tail": {
+          "share_minimax_lower": 0.448,
+          "share_minimax_le": 0.829,
+          "mean_diff": 0.023,
+          "diff_ci95": [
+            -0.059,
+            0.118
+          ]
+        },
+        "single_risk": {
+          "share_minimax_lower": 0.637,
+          "share_minimax_le": 0.83,
+          "mean_diff": 0.053,
+          "diff_ci95": [
+            -0.118,
+            0.176
+          ]
+        },
+        "burden_mean": {
+          "share_minimax_lower": 0.678,
+          "share_minimax_le": 0.925,
+          "mean_diff": 0.064,
+          "diff_ci95": [
+            -0.059,
+            0.176
+          ]
+        },
+        "burden_median": {
+          "share_minimax_lower": 0.449,
+          "share_minimax_le": 0.862,
+          "mean_diff": 0.018,
+          "diff_ci95": [
+            -0.059,
+            0.059
+          ]
+        },
+        "all_mean": {
+          "share_minimax_lower": 0.475,
+          "share_minimax_le": 0.805,
+          "mean_diff": 0.028,
+          "diff_ci95": [
+            -0.059,
+            0.118
+          ]
+        }
+      }
+    },
+    "split_half": {
+      "n_splits": 200,
+      "mean_worst": {
+        "single_cost": 0.371,
+        "single_labor": 0.304,
+        "single_volume": 0.379,
+        "single_tail": 0.337,
+        "single_risk": 0.395,
+        "burden_mean": 0.373,
+        "burden_median": 0.322,
+        "all_mean": 0.344,
+        "minimax": 0.316
+      },
+      "single_cost": {
+        "share_minimax_lower": 0.71,
+        "share_tie": 0.24,
+        "share_minimax_higher": 0.05,
+        "mean_diff": 0.055,
+        "wilcoxon_p_greater": 1.0055642502514922e-22
+      },
+      "single_labor": {
+        "share_minimax_lower": 0.195,
+        "share_tie": 0.435,
+        "share_minimax_higher": 0.37,
+        "mean_diff": -0.012,
+        "wilcoxon_p_greater": 0.9996653713876329
+      },
+      "single_volume": {
+        "share_minimax_lower": 0.74,
+        "share_tie": 0.195,
+        "share_minimax_higher": 0.065,
+        "mean_diff": 0.063,
+        "wilcoxon_p_greater": 3.602184605791879e-24
+      },
+      "single_tail": {
+        "share_minimax_lower": 0.44,
+        "share_tie": 0.325,
+        "share_minimax_higher": 0.235,
+        "mean_diff": 0.021,
+        "wilcoxon_p_greater": 0.00026671039748308624
+      },
+      "single_risk": {
+        "share_minimax_lower": 0.705,
+        "share_tie": 0.205,
+        "share_minimax_higher": 0.09,
+        "mean_diff": 0.079,
+        "wilcoxon_p_greater": 2.3800796738321222e-22
+      },
+      "burden_mean": {
+        "share_minimax_lower": 0.7,
+        "share_tie": 0.235,
+        "share_minimax_higher": 0.065,
+        "mean_diff": 0.057,
+        "wilcoxon_p_greater": 4.048927639458189e-22
+      },
+      "burden_median": {
+        "share_minimax_lower": 0.28,
+        "share_tie": 0.525,
+        "share_minimax_higher": 0.195,
+        "mean_diff": 0.006,
+        "wilcoxon_p_greater": 0.10102579532990325
+      },
+      "all_mean": {
+        "share_minimax_lower": 0.475,
+        "share_tie": 0.44,
+        "share_minimax_higher": 0.085,
+        "mean_diff": 0.029,
+        "wilcoxon_p_greater": 9.260757029586743e-12
+      }
+    }
+  }
+}

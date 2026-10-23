@@ -1,0 +1,11 @@
+campus,entity,freq,contested,rank_cost,rank_labor,rank_volume,rank_tail,rank_risk,favoring,disfavoring,in_minimax,in_cost
+4,D30,0.937,False,1.0,0.867,0.867,1.0,0.733,tail,risk,True,True
+2,D50,0.913,False,0.786,0.857,0.857,0.857,0.857,volume,cost,True,False
+8,D50,0.799,True,0.882,0.882,1.0,0.765,0.765,volume,tail,False,True
+8,D20,0.716,True,0.824,0.824,0.882,0.824,0.824,volume,labor,False,False
+8,G20,0.685,True,1.0,0.941,0.353,1.0,1.0,tail,volume,True,True
+9,D20,0.597,True,0.857,0.857,0.857,0.714,0.857,volume,tail,True,True
+1,D90,0.481,True,0.8,0.933,0.533,0.933,0.867,tail,volume,True,False
+8,E10,0.446,True,0.765,0.765,0.824,0.882,0.882,tail,cost,True,False
+1,D50,0.306,True,0.867,0.8,1.0,0.8,0.467,volume,risk,False,True
+9,E10,0.107,False,0.714,0.643,0.5,0.929,0.929,risk,volume,False,False

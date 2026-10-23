@@ -1,4 +1,4 @@
-"""Phase 7: manuscript figures F1-F8 (guide Section 8).
+"""Phase 7: manuscript figures F1-F8.
 
 All figures are generated from results/ files (plus panel aggregates), saved
 as PDF + 300 dpi PNG under figures/. Okabe-Ito palette; ledger colors fixed
@@ -160,7 +160,7 @@ def f1_schematic():
 # ---------------------------------------------------------------- F2
 def coverage_eventdate(cfg) -> pd.DataFrame:
     """Campus x year WO counts using each campus's assigned date column
-    (deviation D-02); cached in results/p7_coverage_eventdate.csv."""
+    (most reliable field per campus); cached in results/p7_coverage_eventdate.csv."""
     out = results_path("p7_coverage_eventdate.csv")
     if out.exists():
         cov = pd.read_csv(out, index_col=0)
@@ -202,11 +202,10 @@ def f2_data_overview():
     for c in campuses:
         labels.append(f"U{c:02d}" if c in retained else f"U{c:02d} (excl.)")
     ax.set_yticks(range(len(campuses)), labels)
-    # Excluded campuses carry both an "(excl.)" suffix and a gray italic tick,
-    # so the exclusion reads at any print size and does not rely on color.
+    # Excluded campuses carry an "(excl.)" suffix and an italic tick, so the
+    # exclusion reads at any print size; all figure text stays black.
     for tick, c in zip(ax.get_yticklabels(), campuses):
         if c not in retained:
-            tick.set_color("#8A8A8A")
             tick.set_style("italic")
     for ci, c in enumerate(campuses):
         if c in retained:

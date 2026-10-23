@@ -1,17 +1,19 @@
 {
   "l5_variant_rank_corr": {
-    "L5r_vs_L5cv": -0.005,
-    "L5r_vs_L5mae": 0.171,
+    "L5r_vs_L5cv": -0.312,
+    "L5r_vs_L5mae": 0.761,
     "L5r_vs_L5r_shrunk": 1.0,
-    "L5cv_vs_L5mae": -0.329
+    "L5cv_vs_L5mae": -0.329,
+    "L5r_vs_L5r_add": 0.279
   },
   "size_dependence": {
     "L1": 0.846,
     "L2": 0.808,
     "L3": 0.998,
     "L4x": 0.735,
-    "L5r": 0.163,
-    "L5cv": -0.697
+    "L5r": 0.698,
+    "L5cv": -0.697,
+    "L5r_add": 0.163
   },
   "split_half": {
     "L1": {
@@ -31,8 +33,8 @@
       "p5": 0.937
     },
     "L5r": {
-      "mean": 0.77,
-      "p5": 0.709
+      "mean": 0.885,
+      "p5": 0.849
     }
   },
   "loyo_rank_consistency": {
@@ -53,8 +55,8 @@
       "mean": 0.967
     },
     "L5r": {
-      "min": 0.707,
-      "mean": 0.822
+      "min": 0.858,
+      "mean": 0.919
     }
   }
 }

@@ -1,4 +1,4 @@
-# Paper Z (CMERF) single source of parameter truth.
+# CMERF: single source of parameter truth.
 seed: 20260707
 window_core: [2014, 2020]        # core analysis window
 min_wo_entity_system: 60         # fallback F1 (6 campuses < 8), was 100
@@ -32,7 +32,7 @@ topk_pct: [0.10, 0.20]
 extreme_pct: 99.9
 cpi_base_year: 2021
 
-# Data-quality screening resolutions (docs/decisions_log.md)
+# Data-quality screening resolutions
 campuses_retained: [1, 2, 4, 5, 8, 9]
 campuses_labor_ok: [1, 2, 4, 5, 8, 9]
 campuses_cad: [1, 4]

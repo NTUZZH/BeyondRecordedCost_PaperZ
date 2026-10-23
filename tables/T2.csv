@@ -1,6 +1,7 @@
-Criterion,Management question,What it measures,Units,Reliability
-Recorded cost,Where was the greatest expenditure recorded?,Total constant-currency cost,Currency,0.99
-Labor hours,Which systems consumed the most technician effort?,Total labor hours,Hours,0.97
-Persistent volume,Which systems generated sustained work demand?,Volume weighted by temporal persistence,Count-based,1.00
-Tail expenditure,Which systems accumulated the greatest excess cost from unusually expensive jobs?,Cost above the campus 95th percentile of per-work-order cost,Currency,0.95
-Budget risk,Which systems produced the largest annual budget surprises?,Common-shock-adjusted annual cost volatility,Currency,0.77
+Campus,Country,Window,Buildings,Work orders per year,Cost per year (million),Labor hours per year (thousand),Preventive (%),Systems,Comparable
+U01,Canada,2014-2019,180,"23,019",9.8,123,43.7,18,15
+U02,USA,2016-2020,384,"13,187",14.8,108,48.0,16,14
+U04,Canada,2015-2019,177,"48,034",12.2,90,40.7,16,15
+U05,USA,2014-2020,746,"33,009",3.7,102,52.2,14,7
+U08,USA,2014-2020,-,"14,210",6.6,93,4.4,21,17
+U09,USA,2014-2020,-,"25,301",5.9,81,79.7,20,14

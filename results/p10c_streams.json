@@ -1,0 +1,85 @@
+{
+  "entity_ppm_share_median": 0.471,
+  "rho_ppm_share_vs_meii_b": 0.054,
+  "rho_ppm_share_vs_gap": 0.095,
+  "ppm_share_by_profile": {
+    "stable_aligned": 0.488,
+    "stable_divergent": 0.526,
+    "unstable_aligned": 0.424,
+    "unstable_divergent": 0.632
+  },
+  "PPM": {
+    "n_entities": 66,
+    "n_campuses": 6,
+    "n_work_orders": 445922,
+    "W_pooled": 0.839,
+    "W_by_campus": {
+      "1": 0.903,
+      "2": 0.782,
+      "4": 0.76,
+      "5": 0.915,
+      "8": 0.714,
+      "9": 0.923
+    },
+    "taub_burden_min": 0.492,
+    "taub_burden_max": 0.753,
+    "taub_risk_medburden": 0.623,
+    "meii_b_mean": 0.1095,
+    "topk_dependent": 18,
+    "share_flag_wo": 0.5758,
+    "n_flag_wo": 38,
+    "share_flag_year_block": 0.4545,
+    "n_flag_year_block": 30,
+    "K": 14,
+    "worst_regret": {
+      "single_cost": 0.5,
+      "single_labor": 0.4286,
+      "single_volume": 0.7857,
+      "single_tail": 0.4286,
+      "single_risk": 0.7857,
+      "burden_mean": 0.6429,
+      "burden_median": 0.5714,
+      "all_mean": 0.5714,
+      "minimax": 0.4286
+    },
+    "overlap_single_cost_with_all_records": 0.714,
+    "overlap_minimax_with_all_records": 0.786
+  },
+  "UPM": {
+    "n_entities": 75,
+    "n_campuses": 6,
+    "n_work_orders": 468586,
+    "W_pooled": 0.912,
+    "W_by_campus": {
+      "1": 0.937,
+      "2": 0.934,
+      "4": 0.882,
+      "5": 0.826,
+      "8": 0.896,
+      "9": 0.963
+    },
+    "taub_burden_min": 0.56,
+    "taub_burden_max": 0.817,
+    "taub_risk_medburden": 0.707,
+    "meii_b_mean": 0.0812,
+    "topk_dependent": 9,
+    "share_flag_wo": 0.5733,
+    "n_flag_wo": 43,
+    "share_flag_year_block": 0.4667,
+    "n_flag_year_block": 35,
+    "K": 15,
+    "worst_regret": {
+      "single_cost": 0.2667,
+      "single_labor": 0.3333,
+      "single_volume": 0.3333,
+      "single_tail": 0.2,
+      "single_risk": 0.3333,
+      "burden_mean": 0.2667,
+      "burden_median": 0.2667,
+      "all_mean": 0.2,
+      "minimax": 0.2
+    },
+    "overlap_single_cost_with_all_records": 0.933,
+    "overlap_minimax_with_all_records": 0.8
+  }
+}

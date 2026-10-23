@@ -3,7 +3,8 @@
 Burden family (related resource-burden representations, constant currency
 where monetary): L1 recorded expenditure, L2 labor hours, L3 persistent
 work-order volume, L4x excess tail cost.
-Distinct objective: L5r budget risk (SD of two-way-demeaned annual cost).
+Distinct objective: L5r budget risk (SD of annual cost around the entity
+mean scaled by the leave-one-out campus spending index).
 
 Outputs
   results/p2b_ledgers_entity.csv   revised scores + within-campus ranks +
@@ -34,7 +35,7 @@ RANK_COLS = [f"r_{l}" for l in REVISED_ALL]
 
 def add_revised_ranks(scores: pd.DataFrame) -> pd.DataFrame:
     df = scores.copy()
-    for led in REVISED_ALL + ["L5r_shrunk", "L5mae", "L5cv"]:
+    for led in REVISED_ALL + ["L5r_shrunk", "L5mae", "L5cv", "L5r_add"]:
         df[f"r_{led}"] = np.nan
         for c, idx in df.groupby("campus", observed=True).groups.items():
             df.loc[idx, f"r_{led}"] = pct_rank(df.loc[idx, led].to_numpy())
@@ -138,7 +139,7 @@ def main() -> None:
     }
     # L5 variant agreement (pooled within-campus tau-b)
     for va, vb in (("L5r", "L5cv"), ("L5r", "L5mae"), ("L5r", "L5r_shrunk"),
-                   ("L5cv", "L5mae")):
+                   ("L5cv", "L5mae"), ("L5r", "L5r_add")):
         taus = []
         for c, g in scores.groupby("campus", observed=True):
             x, y = g[va].to_numpy(), g[vb].to_numpy()
@@ -148,7 +149,7 @@ def main() -> None:
         diag["l5_variant_rank_corr"][f"{va}_vs_{vb}"] = round(float(np.mean(taus)), 3)
     # size dependence: pooled within-campus Spearman of each rank vs log n_wos
     logn = np.log(scores["n_wos"].to_numpy())
-    for l in REVISED_ALL + ["L5cv"]:
+    for l in REVISED_ALL + ["L5cv", "L5r_add"]:
         rhos = []
         for c, g in scores.groupby("campus", observed=True):
             x = g[f"r_{l}"].to_numpy()

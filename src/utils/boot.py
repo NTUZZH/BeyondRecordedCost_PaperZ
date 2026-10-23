@@ -14,6 +14,8 @@ from __future__ import annotations
 import numpy as np
 from scipy.stats import rankdata
 
+from utils.ledgers import risk_sd
+
 
 class CampusBootstrap:
     """Precomputed per-WO arrays for one campus's comparable entities."""
@@ -137,7 +139,8 @@ class CampusBootstrap:
 class RevisedCampusBootstrap:
     """Joint-by-campus bootstrap for the revised ledger set
     (L1 constant-currency cost, L2 labor, L3 persistent volume, L4x excess
-    tail cost, L5r two-way-demeaned annual-cost SD).
+    tail cost, L5r SD of annual cost around the entity mean scaled by the
+    leave-one-out campus spending index; see utils.ledgers.risk_sd).
 
     mode='wo'         per-entity multinomial resampling of work orders
                       (finite-record noise under independent records)
@@ -206,9 +209,8 @@ class RevisedCampusBootstrap:
 
     @staticmethod
     def _demean_sd(M: np.ndarray) -> np.ndarray:
-        resid = (M - M.mean(axis=1, keepdims=True)
-                 - M.mean(axis=0, keepdims=True) + M.mean())
-        return resid.std(axis=1, ddof=1)
+        # identical estimator to the observed pipeline (utils.ledgers)
+        return risk_sd(M)
 
     def scores_for_weights(self, weights: list[np.ndarray],
                            year_draw: np.ndarray | None = None) -> np.ndarray:

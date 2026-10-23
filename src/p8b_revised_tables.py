@@ -286,12 +286,9 @@ def a9_mapping():
 
 
 if __name__ == "__main__":
-    t2_criteria()
-    t3_stability_revised()
-    t4_profiles()
-    t5_rules()
+    # The main-text tables T1-T7 and the supplement tables A7 and A9-A16
+    # are written by p8c_tables_r1.py; the builders above that are not
+    # called here are kept for provenance.
     a6_simulation()
-    a7_diagnostics()
     a8_missing()
-    a9_mapping()
-    print("revised tables complete")
+    print("revised tables complete (A6, A8)")

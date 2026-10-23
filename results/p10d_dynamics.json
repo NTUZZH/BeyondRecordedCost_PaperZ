@@ -1,0 +1,186 @@
+{
+  "persistence": {
+    "taub_consecutive_mean": {
+      "cost": 0.798,
+      "labor": 0.812,
+      "volume": 0.88,
+      "tail": 0.713,
+      "mean": 0.815
+    },
+    "taub_consecutive_min": {
+      "cost": 0.309,
+      "labor": 0.088,
+      "volume": 0.597,
+      "tail": 0.148,
+      "mean": 0.287
+    },
+    "top20_retained_mean": {
+      "cost": 0.892,
+      "labor": 0.874,
+      "volume": 0.922,
+      "tail": 0.704,
+      "mean": 0.935
+    },
+    "n_campus_year_pairs": 31,
+    "topk_dependent_per_campus_year_mean": 2.32,
+    "topk_dependent_per_campus_year_total_mean": 13.9
+  },
+  "forward_h4": {
+    "h": 4,
+    "campuses": 6,
+    "N": 82,
+    "K": 17,
+    "single_cost": {
+      "cost": 1.0,
+      "labor": 0.824,
+      "volume": 0.882,
+      "tail": 0.706,
+      "mean": 0.824,
+      "worst_burden": 0.706
+    },
+    "single_labor": {
+      "cost": 0.824,
+      "labor": 0.882,
+      "volume": 0.824,
+      "tail": 0.706,
+      "mean": 0.824,
+      "worst_burden": 0.706
+    },
+    "single_volume": {
+      "cost": 0.882,
+      "labor": 0.941,
+      "volume": 1.0,
+      "tail": 0.706,
+      "mean": 0.941,
+      "worst_burden": 0.706
+    },
+    "single_tail": {
+      "cost": 0.706,
+      "labor": 0.765,
+      "volume": 0.706,
+      "tail": 0.765,
+      "mean": 0.765,
+      "worst_burden": 0.706
+    },
+    "single_risk": {
+      "cost": 0.647,
+      "labor": 0.647,
+      "volume": 0.647,
+      "tail": 0.588,
+      "mean": 0.588,
+      "worst_burden": 0.588
+    },
+    "burden_mean": {
+      "cost": 0.882,
+      "labor": 0.882,
+      "volume": 0.941,
+      "tail": 0.765,
+      "mean": 0.941,
+      "worst_burden": 0.765
+    },
+    "burden_median": {
+      "cost": 0.882,
+      "labor": 0.882,
+      "volume": 0.882,
+      "tail": 0.706,
+      "mean": 0.882,
+      "worst_burden": 0.706
+    },
+    "all_mean": {
+      "cost": 0.882,
+      "labor": 0.941,
+      "volume": 0.941,
+      "tail": 0.765,
+      "mean": 0.882,
+      "worst_burden": 0.765
+    },
+    "minimax": {
+      "cost": 0.824,
+      "labor": 0.824,
+      "volume": 0.824,
+      "tail": 0.706,
+      "mean": 0.765,
+      "worst_burden": 0.706
+    },
+    "chance": 0.207
+  },
+  "forward_h5": {
+    "h": 5,
+    "campuses": 4,
+    "N": 53,
+    "K": 11,
+    "single_cost": {
+      "cost": 0.909,
+      "labor": 0.818,
+      "volume": 0.909,
+      "tail": 0.818,
+      "mean": 0.909,
+      "worst_burden": 0.818
+    },
+    "single_labor": {
+      "cost": 0.818,
+      "labor": 0.909,
+      "volume": 0.818,
+      "tail": 0.909,
+      "mean": 0.818,
+      "worst_burden": 0.818
+    },
+    "single_volume": {
+      "cost": 0.909,
+      "labor": 0.909,
+      "volume": 1.0,
+      "tail": 0.818,
+      "mean": 1.0,
+      "worst_burden": 0.818
+    },
+    "single_tail": {
+      "cost": 0.727,
+      "labor": 0.727,
+      "volume": 0.636,
+      "tail": 0.818,
+      "mean": 0.636,
+      "worst_burden": 0.636
+    },
+    "single_risk": {
+      "cost": 0.636,
+      "labor": 0.636,
+      "volume": 0.545,
+      "tail": 0.727,
+      "mean": 0.545,
+      "worst_burden": 0.545
+    },
+    "burden_mean": {
+      "cost": 0.909,
+      "labor": 0.818,
+      "volume": 0.909,
+      "tail": 0.818,
+      "mean": 0.909,
+      "worst_burden": 0.818
+    },
+    "burden_median": {
+      "cost": 0.818,
+      "labor": 0.909,
+      "volume": 0.818,
+      "tail": 0.909,
+      "mean": 0.818,
+      "worst_burden": 0.818
+    },
+    "all_mean": {
+      "cost": 0.818,
+      "labor": 0.818,
+      "volume": 0.818,
+      "tail": 0.818,
+      "mean": 0.818,
+      "worst_burden": 0.818
+    },
+    "minimax": {
+      "cost": 0.818,
+      "labor": 0.909,
+      "volume": 0.818,
+      "tail": 0.909,
+      "mean": 0.818,
+      "worst_burden": 0.818
+    },
+    "chance": 0.208
+  }
+}

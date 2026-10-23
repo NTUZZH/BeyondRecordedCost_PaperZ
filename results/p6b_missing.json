@@ -57,7 +57,7 @@
   },
   "R15_coverage_associations": {
     "spearman_costcov_vs_meii_burden": 0.022,
-    "spearman_costcov_vs_gap_risk": 0.091,
+    "spearman_costcov_vs_gap_risk": 0.14,
     "spearman_costcov_vs_mean_burden_rank": -0.454,
     "spearman_laborcov_vs_meii_b": 0.047
   }

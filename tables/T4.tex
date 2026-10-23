@@ -1,10 +1,18 @@
-\begin{tabular}{p{6.4cm}cccc}
+\begin{tabular}{lp{4.4cm}p{3.0cm}p{5.0cm}p{2.0cm}}
 \toprule
-Profile & Entities & Share (\%) & Cost-weighted (\%) & Top-20\% metric-dependent \\
+Hypothesis & Quantity & Observed & Reference & Result \\
 \midrule
-Metric-stable / risk-aligned & 25 & 30.5 & 47.5 & 2 \\
-Metric-stable / repositioned by risk & 8 & 9.8 & 4.8 & 1 \\
-Metric-sensitive / risk-aligned & 36 & 43.9 & 39.3 & 7 \\
-Metric-sensitive / repositioned by risk & 13 & 15.9 & 8.4 & 1 \\
+H1 & Kendall's $W$ of the four burden ranks, chi-square test & 0.90 & 0.25 for unrelated rankings (95th percentile 0.31); $p < 0.001$ & Supported \\
+H1 & $W$ against matched sampling noise & 0.90 & 0.988 (0.982--0.993) / 0.977 (0.963--0.989); $p \leq 0.001$ & Supported \\
+H1 & Systems changing top-20\% membership with the measure & 11 & 3.6 (95th percentile 6) / 4.8 (8); $p \leq 0.005$ & Supported \\
+H2 & $\tau$-b of budget risk and median burden rank & 0.72 (0.64--0.78) & Mean of burden pairs 0.72; difference $-0.07$ to 0.07 & Not supported \\
+H2 & Within-campus Spearman correlation: unadjusted; corrected for reliability; adjusted for work-order count & 0.89; 0.92; 0.73 (0.49--0.83) & 0 for unrelated ranks & Not supported \\
+H2 & Shared members of two top-17 sets & Risk and cost 11; risk and a burden measure 11--14 & Two burden measures 12--15; risk and cost 9--14 / 8--13 under resampling & Shortlist diagnostic \\
+H3 & Share above the noise floor, work-order design & 59.8\% (at least 50.1\%); 46 after false-discovery-rate control & 10\%; $p < 0.001$ & Supported \\
+H3 & Share above the noise floor, year-block design & 51.2\% (at least 41.6\%); 34 after false-discovery-rate control & 10\%; $p < 0.001$ & Supported \\
+H3 & Campuses whose share exceeds 10\%, both designs & 6 of 6 / 6 of 6; lowest 42.9\% / 14.3\% & Sign test $p = 0.016$; campus bootstrap 49.4--71.8\% / 32.5--64.9\% & Supported \\
+H4 & Worst-case regret on the observed records & 0.176 & 0.235 or more for the other rules & By construction \\
+H4 & Mean worst-case regret on resampled records & 0.272 / 0.306 & 0.292 or more / 0.324 or more; every paired interval includes 0 & Lowest mean \\
+H4 & Mean worst-case regret on the held-out half & 0.316 & Labor hours 0.304, median burden 0.322, others 0.337--0.395; lower than six rules at $p \leq 0.001$ & Partly supported \\
 \bottomrule
 \end{tabular}

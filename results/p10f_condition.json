@@ -1,0 +1,110 @@
+{
+  "availability": {
+    "1": {
+      "buildings": 180,
+      "fci": 138,
+      "crv": 138,
+      "dmc": 138,
+      "size": 138
+    },
+    "2": {
+      "buildings": 384,
+      "fci": 0,
+      "crv": 0,
+      "dmc": 0,
+      "size": 0
+    },
+    "3": {
+      "buildings": 557,
+      "fci": 0,
+      "crv": 0,
+      "dmc": 0,
+      "size": 0
+    },
+    "4": {
+      "buildings": 177,
+      "fci": 0,
+      "crv": 0,
+      "dmc": 0,
+      "size": 0
+    },
+    "5": {
+      "buildings": 947,
+      "fci": 0,
+      "crv": 0,
+      "dmc": 0,
+      "size": 0
+    },
+    "6": {
+      "buildings": 304,
+      "fci": 233,
+      "crv": 252,
+      "dmc": 237,
+      "size": 252
+    },
+    "7": {
+      "buildings": 26,
+      "fci": 0,
+      "crv": 0,
+      "dmc": 0,
+      "size": 0
+    },
+    "8": {
+      "buildings": 0,
+      "fci": 0,
+      "crv": 0,
+      "dmc": 0,
+      "size": 0
+    },
+    "9": {
+      "buildings": 0,
+      "fci": 0,
+      "crv": 0,
+      "dmc": 0,
+      "size": 0
+    },
+    "10": {
+      "buildings": 473,
+      "fci": 0,
+      "crv": 0,
+      "dmc": 0,
+      "size": 0
+    },
+    "11": {
+      "buildings": 991,
+      "fci": 0,
+      "crv": 0,
+      "dmc": 0,
+      "size": 0
+    },
+    "12": {
+      "buildings": 0,
+      "fci": 0,
+      "crv": 0,
+      "dmc": 0,
+      "size": 0
+    }
+  },
+  "n_universities_with_fci": 2,
+  "n_universities": 12,
+  "retained_with_fci": [
+    1
+  ],
+  "U01_buildings": {
+    "n_buildings": 138,
+    "rho_cost_dmc": 0.804,
+    "rho_cost_crv": 0.856,
+    "rho_cost_fci": 0.003,
+    "rho_cost_size": 0.862,
+    "rho_labor_dmc": 0.818,
+    "rho_labor_crv": 0.858,
+    "rho_labor_fci": 0.008,
+    "rho_labor_size": 0.856,
+    "rho_wos_dmc": 0.768,
+    "rho_wos_crv": 0.796,
+    "rho_wos_fci": 0.044,
+    "rho_wos_size": 0.798,
+    "rho_costpersize_fci": 0.246,
+    "median_dmc_over_annual_cost": 74.9
+  }
+}

@@ -1,4 +1,4 @@
-"""Phase 7/8: manuscript tables T1-T6 (guide Section 8).
+"""Phase 7/8: manuscript tables T1-T6.
 
 Each table is written as tables/T{n}.csv (data) and tables/T{n}.tex (booktabs
 LaTeX body, \input into the manuscript).

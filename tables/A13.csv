@@ -1,0 +1,10 @@
+Rule chosen on the first four years,Cost,Labor,Volume,Tail,Mean burden,Smallest
+Recorded cost only,1.00,0.82,0.88,0.71,0.82,0.71
+Labor hours only,0.82,0.88,0.82,0.71,0.82,0.71
+Persistent volume only,0.88,0.94,1.00,0.71,0.94,0.71
+Tail expenditure only,0.71,0.77,0.71,0.77,0.77,0.71
+Budget risk only,0.65,0.65,0.65,0.59,0.59,0.59
+Burden mean rank,0.88,0.88,0.94,0.77,0.94,0.77
+Burden median rank,0.88,0.88,0.88,0.71,0.88,0.71
+All-criteria mean rank,0.88,0.94,0.94,0.77,0.88,0.77
+Minimax-regret shortlist,0.82,0.82,0.82,0.71,0.77,0.71

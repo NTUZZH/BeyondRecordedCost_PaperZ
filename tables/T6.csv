@@ -1,0 +1,10 @@
+Rule,Worst-case regret,Regret on budget risk,"Worst-case regret, top 10%",Resampled (work-order / year-block),Split-half,Cost captured (%)
+Recorded cost only,0.353,0.353,0.444,0.363 / 0.385,0.371,64.6
+Labor hours only,0.235,0.235,0.333,0.292 / 0.324,0.304,-
+Persistent volume only,0.353,0.353,0.444,0.369 / 0.393,0.379,-
+Tail expenditure only,0.294,0.176,0.444,0.302 / 0.329,0.337,-
+Budget risk only,0.353,0.000,0.444,0.353 / 0.359,0.395,-
+Burden mean rank,0.353,0.353,0.444,0.335 / 0.370,0.373,-
+Burden median rank,0.235,0.235,0.333,0.292 / 0.324,0.322,-
+All-criteria mean rank,0.294,0.294,0.333,0.312 / 0.334,0.344,-
+Minimax-regret shortlist,0.176,0.176,0.222,0.272 / 0.306,0.316,63.1

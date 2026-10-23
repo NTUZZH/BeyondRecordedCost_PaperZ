@@ -58,37 +58,72 @@ def regret_vec(S: set, tops: dict, K: int) -> dict:
 def minimax_shortlist(df: pd.DataFrame, tops: dict, K: int) -> set:
     """Exactly minimize the worst-case criterion regret by MILP:
     maximize t s.t. |S cap Top_K(l)| >= t for every criterion l, |S| = K,
-    x binary. Minimizing max_l (1 - cov_l/K) == maximizing min_l cov_l."""
+    x binary. Minimizing max_l (1 - cov_l/K) == maximizing min_l cov_l.
+
+    Several lists usually reach the same worst case, so the choice among
+    them is fixed by two further solves instead of by solver order: among
+    the minimax-optimal lists, the one with the largest total coverage of
+    the five top sets, and among those, the one with the highest summed
+    mean percentile rank of its members."""
     idx = list(df.index)
     n = len(idx)
     pos = {e: i for i, e in enumerate(idx)}
-    # variables: [x_0..x_{n-1}, t]; maximize t  ->  minimize -t
+    member = np.zeros((len(CRITERIA), n))
+    for j, col in enumerate(CRITERIA):
+        for e in tops[col]:
+            member[j, pos[e]] = 1.0
+    integ = np.ones(n)
+    box = Bounds(np.zeros(n), np.ones(n))
+    size = LinearConstraint(np.ones((1, n)), [K], [K])
+
+    # 1. the largest smallest coverage t*  (variables x and t)
     c = np.zeros(n + 1)
     c[-1] = -1.0
-    rows, lb, ub = [], [], []
-    # |S| = K
-    r = np.zeros(n + 1)
-    r[:n] = 1.0
-    rows.append(r)
-    lb.append(K)
-    ub.append(K)
-    # for each criterion: sum_{i in T_l} x_i - t >= 0
-    for col in CRITERIA:
-        r = np.zeros(n + 1)
-        for e in tops[col]:
-            r[pos[e]] = 1.0
-        r[-1] = -1.0
-        rows.append(r)
-        lb.append(0.0)
-        ub.append(np.inf)
-    A = np.vstack(rows)
-    cons = LinearConstraint(A, lb, ub)
-    integ = np.ones(n + 1)
-    integ[-1] = 0                      # t continuous
-    bounds = Bounds(np.r_[np.zeros(n), 0], np.r_[np.ones(n), K])
-    res = milp(c, constraints=cons, integrality=integ, bounds=bounds)
-    x = np.round(res.x[:n]).astype(bool)
+    A = np.hstack([member, -np.ones((len(CRITERIA), 1))])
+    cons = [LinearConstraint(np.hstack([np.ones((1, n)), np.zeros((1, 1))]), [K], [K]),
+            LinearConstraint(A, np.zeros(len(CRITERIA)), np.full(len(CRITERIA), np.inf))]
+    res = milp(c, constraints=cons, integrality=np.r_[integ, 0],
+               bounds=Bounds(np.r_[np.zeros(n), 0], np.r_[np.ones(n), K]))
+    t_star = int(round(-res.fun))
+    floor = LinearConstraint(member, np.full(len(CRITERIA), t_star),
+                             np.full(len(CRITERIA), np.inf))
+    # 2. the largest total coverage among the minimax-optimal lists
+    total = member.sum(axis=0)
+    res = milp(-total, constraints=[size, floor], integrality=integ, bounds=box)
+    c_star = int(round(-res.fun))
+    # 3. the highest summed mean rank among those
+    mean_rank = df[CRITERIA].mean(axis=1).to_numpy()
+    res = milp(-mean_rank, integrality=integ, bounds=box,
+               constraints=[size, floor,
+                            LinearConstraint(total[None, :], [c_star], [np.inf])])
+    x = np.round(res.x).astype(bool)
     return {idx[i] for i in range(n) if x[i]}
+
+
+def minimax_forced(df: pd.DataFrame, tops: dict, K: int) -> list:
+    """Entities on every minimax-optimal list (the list's fixed part)."""
+    idx = list(df.index)
+    n = len(idx)
+    pos = {e: i for i, e in enumerate(idx)}
+    member = np.zeros((len(CRITERIA), n))
+    for j, col in enumerate(CRITERIA):
+        for e in tops[col]:
+            member[j, pos[e]] = 1.0
+    S = minimax_shortlist(df, tops, K)
+    t_star = min(int(member[j, [pos[e] for e in S]].sum()) for j in range(len(CRITERIA)))
+    base = [LinearConstraint(np.ones((1, n)), [K], [K]),
+            LinearConstraint(member, np.full(len(CRITERIA), t_star),
+                             np.full(len(CRITERIA), np.inf))]
+    forced = []
+    for e in idx:
+        out = np.zeros((1, n))
+        out[0, pos[e]] = 1.0
+        res = milp(np.zeros(n), integrality=np.ones(n),
+                   bounds=Bounds(np.zeros(n), np.ones(n)),
+                   constraints=base + [LinearConstraint(out, [0], [0])])
+        if res.status != 0:          # infeasible without e
+            forced.append(e)
+    return forced
 
 
 def rule_selections(df: pd.DataFrame, q: float) -> dict:
@@ -191,12 +226,16 @@ def per_campus_top5_check(df: pd.DataFrame) -> dict:
                 S = set(g.assign(_m=g[CRITERIA].mean(axis=1)).nlargest(k, "_m").index)
             else:  # minimax by enumeration (small k)
                 pool = sorted(set().union(*tl.values()))
-                best, bv = None, np.inf
+                # same tie-break as the portfolio list: smallest worst
+                # case, then largest total coverage, then highest mean rank
+                mr = g[CRITERIA].mean(axis=1)
+                best, key = None, None
                 for combo in combinations(pool, min(k, len(pool))):
                     Sx = set(combo)
-                    v = max(1 - len(Sx & tl[col]) / k for col in CRITERIA)
-                    if v < bv - 1e-12:
-                        best, bv = Sx, v
+                    cov = [len(Sx & tl[col]) for col in CRITERIA]
+                    kx = (min(cov), sum(cov), round(float(mr[list(Sx)].sum()), 12))
+                    if key is None or kx > key:
+                        best, key = Sx, kx
                 S = best
             worst.append(max(1 - len(S & tl[col]) / k for col in CRITERIA))
         out[name] = round(float(np.mean(worst)), 4)
@@ -228,6 +267,10 @@ def main() -> None:
                     float(((sw["freq"] >= 0.20) & (sw["freq"] < 0.80)).mean()), 4),
             }
             ent["in_minimax_q20"] = ent.index.isin(rules["minimax"]["_sel"])
+            tops20 = pooled_topsets(df, rules["K"])
+            forced = minimax_forced(df, tops20, rules["K"])
+            ent["on_every_minimax_list"] = ent.index.isin(forced)
+            out["minimax_on_every_optimal_list_q20"] = len(forced)
             ent["in_cost_q20"] = ent.index.isin(rules["single_cost"]["_sel"])
 
     out["per_campus_top5"] = per_campus_top5_check(df)

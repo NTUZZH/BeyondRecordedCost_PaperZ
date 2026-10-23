@@ -1,0 +1,6 @@
+Criterion,Construct,Primary user,Decision,Units,Additive
+Recorded cost,Cash spent (constant 2021 currency),"Finance, asset manager",Expenditure review,Currency,Yes
+Labor hours,Technician hours consumed,Maintenance supervisor,Staffing and scheduling,Hours,Yes
+Persistent volume,Work-order count weighted by the share of active quarters,Operations manager,Process improvement,Count,Approximately
+Tail expenditure,Cost above the campus 95th percentile of the cost per work order,Financial planner,Contingency reserves,Currency,Yes
+Budget risk,SD of annual cost around its own mean scaled by the campus spending index,Budget planner,Contingency allowance and forecasting,Currency,No

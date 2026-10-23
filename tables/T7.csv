@@ -1,0 +1,8 @@
+Campus,System,Cost,Labor,Volume,Tail,Budget risk,Selected (% of weightings),Minimax list
+U08,Electrical,0.88,0.88,1.00,0.77,0.77,79.9,No
+U08,Plumbing,0.82,0.82,0.88,0.82,0.82,71.6,No
+U08,Site improvements,1.00,0.94,0.35,1.00,1.00,68.5,Yes
+U09,Plumbing,0.86,0.86,0.86,0.71,0.86,59.7,Yes
+U01,General building services,0.80,0.93,0.53,0.93,0.87,48.1,Yes
+U08,Equipment,0.77,0.77,0.82,0.88,0.88,44.6,Yes
+U01,Electrical,0.87,0.80,1.00,0.80,0.47,30.6,No

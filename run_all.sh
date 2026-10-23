@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Regenerate every number, figure, and table of Paper Z (CMERF) from raw data.
+# Regenerate every number, figure, and table of the CMERF study from raw data.
 # Prerequisites: data/raw/FMUCD.csv (see data/raw/README.md for hash),
 # data/raw/cpi/*.csv (committed), Python env with pandas/numpy/scipy/
 # statsmodels/pyyaml/joblib/pyarrow/matplotlib. Deterministic: all seeds
@@ -8,7 +8,10 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 PY=${PY:-python}
-JOBS=${JOBS:-8}
+# The bootstrap batches are fixed at 250 replicates, so the released caches
+# reproduce for any JOBS value. The released numbers were produced with
+# Python 3.11, numpy 1.26, scipy 1.17, and pandas 3.0.
+JOBS=${JOBS:-4}
 
 echo "== Phase 0: data screening =="
 $PY src/p0_download_audit.py
@@ -31,6 +34,9 @@ $PY src/p2b_revised.py
 $PY src/p3d_revised.py --boot --B 1000 --jobs "$JOBS"
 $PY src/p3d_revised.py --analyze
 
+echo "== Phase 3g: independence reference =="
+$PY src/p3g_independence.py
+
 echo "== Phase 3e: simulation validation =="
 $PY src/p3e_simulation.py --worlds 200 --B 200 --jobs "$JOBS"
 
@@ -39,6 +45,15 @@ $PY src/p5b_shortlist.py
 
 echo "== Phase 6b: missing-data robustness =="
 $PY src/p6b_missing.py
+
+echo "== Phase 10: campus statistics, hypothesis tests, streams, dynamics, trade-off, condition data =="
+$PY src/p10a_describe.py
+$PY src/p10e_tradeoff.py
+$PY src/p10d_dynamics.py
+$PY src/p10c_streams.py --B 500 --jobs "$JOBS"
+$PY src/p10b_tests.py --splits 200
+$PY src/p10g_h3_campus.py
+$PY src/p10f_condition.py
 
 echo "== Phase 4: archetypes =="
 $PY src/p4_archetypes.py
@@ -53,9 +68,9 @@ echo "== Phase 7: figures =="
 $PY src/p7_figures.py
 $PY src/p7b_revised_figures.py
 
-echo "== Tables (manuscript + appendix) =="
+echo "== Tables (manuscript + supplemental) =="
 $PY src/p8_tables.py
 $PY src/p8b_revised_tables.py
-$PY src/p9_supplementary.py
+$PY src/p8c_tables_r1.py
 
 echo "run_all complete."
